@@ -1,4 +1,4 @@
-package slot9;
+package db;
 
 public class SanPham {
     private String msSP;

@@ -1,4 +1,4 @@
-package slot9;
+package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,9 +8,9 @@ public class ConnectDBFactory {
 
     public static Connection CreateSqlConnection() throws Exception {
         String user = "sa";
-        String pass = "123";
+        String pass = "sa";
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        String dburl = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=qlsp";
+        String dburl = "jdbc:sqlserver://localhost;databaseName=qlsp";
         con = DriverManager.getConnection(dburl, user, pass);
         return con;
     }
