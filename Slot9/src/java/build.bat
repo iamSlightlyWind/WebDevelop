@@ -7,3 +7,4 @@ for /r %%i in (*.java) do (
 )
 
 echo Compilation complete.
+pause

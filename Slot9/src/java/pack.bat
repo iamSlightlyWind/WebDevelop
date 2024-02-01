@@ -1,2 +1,2 @@
-jar -cvf shop.jar demo/spc/*.class demo/db/*.class
+jar -cvf shop.jar ./spc/*.class ./db/*.class
 pause
