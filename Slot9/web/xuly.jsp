@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" errorPage="loi.jsp" %>
-<%@ page import="demo.com.spc.Giohang" %>
-<%@ page import="demo.com.db.XulyDB" %>
-<%@ page import="demo.com.db.SanPham" %>
-<%@ page import="demo.com.spc.MonHang" %>
+<%@ page import="spc.Giohang" %>
+<%@ page import="db.XulyDB" %>
+<%@ page import="db.SanPham" %>
+<%@ page import="spc.MonHang" %>
 <html>
 <% Giohang cart=(Giohang)session.getAttribute("gio"); if(request.getParameter("mua") !=null) { String
     mssp=request.getParameter("ms"); int soluong=Integer.parseInt(request.getParameter("sl")); if(cart==null) { cart=new

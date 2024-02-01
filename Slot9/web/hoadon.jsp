@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" errorPage="loi.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ page import="demo.com.spc.Giohang" %>
+<%@ page import="spc.Giohang" %>
+<%@ page import="spc.MonHang" %>
+<%@ page import="db.SanPham" %>
+<%@ page import="db.XulyDB" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="demo.com.spc.MonHang" %>
-<%@ page import="demo.com.db.SanPham" %>
-<%@ page import="demo.com.db.XulyDB" %>
 
 <html>
 
