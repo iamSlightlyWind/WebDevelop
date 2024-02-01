@@ -19,7 +19,7 @@
         Chọn sản phẩm:
         <select name="ms">
             <% XulyDB db=new XulyDB(); ResultSet rs=db.getAllProducts(); while(rs.next()) { %>
-                <option label='<%=rs.getString("tensp") %>' value='<%=rs.getString("mssp") %>'>
+                <option label='<%=rs.getString("tensp") %>' value='<%=rs.getString("masp") %>'>
                     <% } %>
         </select>
         Số lượng:<input type="text" name="sl" />
@@ -29,7 +29,7 @@
         <h1>CHI TIẾT GIỎ HÀNG</h1>
         <table border="1" width="70%">
             <tr>
-                <th>MSSP</th>
+                <th>masp</th>
                 <th>Ten san Phẩm</th>
                 <th>Số lượng</th>
                 <th>Đơn giá</th>

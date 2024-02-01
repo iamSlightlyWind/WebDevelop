@@ -16,7 +16,7 @@
 <body>
     <table border="1" width="70%">
         <tr>
-            <th>MSSP</th>
+            <th>masp</th>
             <th>Ten san Phẩm</th>
             <th>Số lượng</th>
             <th>Đơn giá</th>

@@ -19,13 +19,13 @@ public class XulyDB {
         SanPham sp = null;
         try {
             Statement stmt = con.createStatement();
-            String sql = "select * from sanpham where mssp='" + ms + "'";
+            String sql = "select * from sanpham where masp='" + ms + "'";
             ResultSet rs = stmt.executeQuery(sql);
             if (rs.next()) {
-                String mssp = rs.getString("mssp");
+                String masp = rs.getString("masp");
                 String ten = rs.getString("tenSP");
                 double dg = rs.getDouble("dongia");
-                sp = new SanPham(mssp, ten, dg);
+                sp = new SanPham(masp, ten, dg);
             }
         } catch (Exception e) {
             e.printStackTrace();

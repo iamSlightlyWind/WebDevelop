@@ -1,7 +1,7 @@
 package db;
 
 public class SanPham {
-    private String msSP;
+    private String masp;
     private String tenSP;
     private double dongia;
 
@@ -9,19 +9,19 @@ public class SanPham {
         super();
     }
 
-    public SanPham(String msSP, String tenSP, double dongia) {
+    public SanPham(String masp, String tenSP, double dongia) {
         super();
-        this.msSP = msSP;
+        this.masp = masp;
         this.tenSP = tenSP;
         this.dongia = dongia;
     }
 
-    public String getMsSP() {
-        return msSP;
+    public String getmasp() {
+        return masp;
     }
 
-    public void setMsSP(String msSP) {
-        this.msSP = msSP;
+    public void setmasp(String masp) {
+        this.masp = masp;
     }
 
     public String getTenSP() {
@@ -44,7 +44,7 @@ public class SanPham {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((msSP == null) ? 0 : msSP.hashCode());
+        result = prime * result + ((masp == null) ? 0 : masp.hashCode());
         return result;
     }
 
@@ -57,10 +57,10 @@ public class SanPham {
         if (getClass() != obj.getClass())
             return false;
         SanPham other = (SanPham) obj;
-        if (msSP == null) {
-            if (other.msSP != null)
+        if (masp == null) {
+            if (other.masp != null)
                 return false;
-        } else if (!msSP.equals(other.msSP))
+        } else if (!masp.equals(other.masp))
             return false;
         return true;
     }
