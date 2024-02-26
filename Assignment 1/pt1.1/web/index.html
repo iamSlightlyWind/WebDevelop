@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enrollment Form</title>
+</head>
+<body>
+    <form action="Enroll" method="post">
+        Student name: <input type="text" name="name"><br>
+        Financial source: 
+        <input type="radio" id="Government" name="financialSource" value="Government">
+        <label for="Government">Government</label>
+        <input type="radio" id="Grant" name="financialSource" value="Grant">
+        <label for="Grant">Grant</label>
+        <input type="radio" id="Self-sponsor" name="financialSource" value="Self-sponsor">
+        <label for="Self-sponsor">Self-Sponsor</label><br>
+        Level: 
+        <select name="level">
+            <option value="Bse">Bse</option>
+            <option value="Master">Master</option>
+            <option value="Phd">Phd</option>
+        </select><br>
+        DOE: <input type="date" name="doe"><br>
+        <input type="submit" value="Save">
+    </form>
+</body>
+</html>

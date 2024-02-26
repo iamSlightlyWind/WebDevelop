@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    <servlet>
+        <servlet-name>WelcomeServlet</servlet-name>
+        <servlet-class>servlet.WelcomeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HelloWorld</servlet-name>
+        <servlet-class>hello.Lab1</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Add</servlet-name>
+        <servlet-class>Labs.Add</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Entry</servlet-name>
+        <servlet-class>Labs.Entry</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>WelcomeServlet</servlet-name>
+        <url-pattern>/WelcomeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HelloWorld</servlet-name>
+        <url-pattern>/HelloWorld</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Add</servlet-name>
+        <url-pattern>/Add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Entry</servlet-name>
+        <url-pattern>/Entry</url-pattern>
+    </servlet-mapping>
+</web-app>
