@@ -23,8 +23,11 @@ hs_err_pid*
 replay_pid*
 
 # NetBeans
-/Slot9/nbproject/private/
-/Slot9/dist/
-/Slot9/build/
-/Demo/nbproject/private/
-/Assignment 1/pt1.2/nbproject/private/
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
