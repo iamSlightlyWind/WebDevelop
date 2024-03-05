@@ -1,11 +1,14 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+    <!DOCTYPE html>
+    <html>
+
     <head>
+        <title>Authentication</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
+
     <body>
-        <form action="AccountManage" method="get">
+        <form action="Authentication" method="get">
             <label for="userName">Username: </label>
             <input type="text" id="userName" name="userName"><br>
             <label for="password">Password: </label>
@@ -15,4 +18,5 @@
         </form>
         <p>${accountStatus}</p>
     </body>
-</html>
+
+    </html>
