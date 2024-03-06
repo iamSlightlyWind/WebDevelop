@@ -10,8 +10,26 @@ public class AccountManage extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+
+        String action = request.getParameter("action");
+
+        if(action.equals("Logout")){
+            request.getSession().invalidate();
+        }
+
+        if(action.equals("changePassword")){
+
+        }
+
+        if(action.equals("deleteAccount")){
             
+        }
+
+        try (PrintWriter out = response.getWriter()) {
+
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/AccountManage.jsp");
+            dispatcher.forward(request, response);
         }
     }
 

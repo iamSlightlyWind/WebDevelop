@@ -54,11 +54,10 @@ public class Authentication extends HttpServlet {
             }
 
             if (completed) {
-                HttpSession session = request.getSession();
-                session.setAttribute("user", userName);
+                request.getSession().setAttribute("user", userName);
             }
 
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Authentication.jsp");
             dispatcher.forward(request, response);
         }
     }

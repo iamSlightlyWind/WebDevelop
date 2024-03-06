@@ -5,13 +5,13 @@ USE Final;
 DROP TABLE Users;
 
 -- create table Users (id, name, password)
-CREATE TABLE Users (
-id INT IDENTITY(1,1),
-name VARCHAR(25),
-password VARCHAR(25)
+CREATE TABLE Users
+(
+    id INT IDENTITY(1,1),
+    name VARCHAR(25),
+    password VARCHAR(25),
+    active INT DEFAULT 0
 );
 
-
-INSERT INTO Users VALUES ('John', 'john');
-
-select * from Users
+select *
+from Users
