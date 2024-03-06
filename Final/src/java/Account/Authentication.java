@@ -17,7 +17,6 @@ public class Authentication extends HttpServlet {
         String password = request.getParameter("password");
         String accountAction = request.getParameter("action");
         boolean user = false;
-        boolean pass = false;
         boolean completed = false;
 
         try (PrintWriter out = response.getWriter()) {
@@ -29,7 +28,6 @@ public class Authentication extends HttpServlet {
                     if (rs.getString("name").equals(userName)) {
                         user = true;
                         if (rs.getString("password").equals(password)) {
-                            pass = true;
                             if(rs.getString("active").equals("1")){
                                 completed = true;
                             }
@@ -40,7 +38,7 @@ public class Authentication extends HttpServlet {
             }
 
             if (accountAction.equals("Login")) {
-                if (user && pass) {
+                if (completed) {
                     request.setAttribute("accountStatus", "Login successful");
                 } else {
                     request.setAttribute("accountStatus", "Login failed");
@@ -48,7 +46,7 @@ public class Authentication extends HttpServlet {
             } else {
                 if (!user) {
                     db.registerUser(userName, password);
-                    request.setAttribute("accountStatus", "Register sucessfully");
+                    request.setAttribute("accountStatus", "Register successful");
                     completed = true;
                 } else if (user) {
                     request.setAttribute("accountStatus", "Register failed");
