@@ -18,7 +18,7 @@
             }
         %>
         <p>${status}</p>
-        <form action="Authentication" method="get">
+        <form action="Auth" method="get">
             <label for="userName">Username: </label>
             <input type="text" id="userName" name="userName"><br>
             <label for="password">Password: </label>

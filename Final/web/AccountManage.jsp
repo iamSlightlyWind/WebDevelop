@@ -4,7 +4,7 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Account</title>
+        <title>Account Manage</title>
     </head>
 
     <body>
@@ -12,11 +12,11 @@
             <p>Name: <%= accountName %>
             </p>
 
-            <form action="Authentication" method="get">
+            <form action="Manage" method="get">
                 <input type="submit" name="action" value="Logout">
             </form>
 
-            <form action="AccountManage" method="get">
+            <form action="Manage" method="get">
                 <p>Change password </p>
                 <label for="oldPassword">Old password: </label>
                 <input type="text" id="oldPassword" name="oldPassword" required><br>
@@ -25,7 +25,7 @@
                 <input type="submit" name="action" value="Change password">
             </form>
 
-            <form action="AccountManage" method="get">
+            <form action="Manage" method="get">
                 <p>Delete account </p>
                 <label for="deleteAccount">Tick to delete account: </label>
                 <input type="checkbox" id="deleteAccount" name="deleteAccount" required><br>

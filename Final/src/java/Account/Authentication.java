@@ -30,7 +30,9 @@ public class Authentication extends HttpServlet {
                         user = true;
                         if (rs.getString("password").equals(password)) {
                             pass = true;
-                            completed = true;
+                            if(rs.getString("active").equals("1")){
+                                completed = true;
+                            }
                         }
                         break;
                     }
@@ -45,7 +47,7 @@ public class Authentication extends HttpServlet {
                 }
             } else {
                 if (!user) {
-                    db.runQuery("insert into Users values ('" + userName + "', '" + password + "')");
+                    db.registerUser(userName, password);
                     request.setAttribute("accountStatus", "Register sucessfully");
                     completed = true;
                 } else if (user) {

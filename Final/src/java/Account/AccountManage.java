@@ -15,6 +15,8 @@ public class AccountManage extends HttpServlet {
 
         if(action.equals("Logout")){
             request.getSession().invalidate();
+            response.sendRedirect(request.getContextPath() + "/Authentication");
+            return;
         }
 
         if(action.equals("changePassword")){
@@ -22,7 +24,7 @@ public class AccountManage extends HttpServlet {
         }
 
         if(action.equals("deleteAccount")){
-            
+
         }
 
         try (PrintWriter out = response.getWriter()) {

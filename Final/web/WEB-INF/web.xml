@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    <!-- Authentication -->
     <servlet>
-        <servlet-name>Authentication</servlet-name>
-        <servlet-class>Account.Authentication</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AccountManageServlet</servlet-name>
-        <servlet-class>Account.AccountManage</servlet-class>
+        <servlet-name>AuthenticationJSP</servlet-name>
+        <jsp-file>/Authentication.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Authentication</servlet-name>
+        <servlet-name>AuthenticationJSP</servlet-name>
         <url-pattern>/Authentication</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AuthenticationServlet</servlet-name>
+        <servlet-class>Account.Authentication</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AuthenticationServlet</servlet-name>
+        <url-pattern>/Auth</url-pattern>
+    </servlet-mapping>
+
+    <!-- AccountManage -->
     <servlet>
         <servlet-name>AccountManageJSP</servlet-name>
         <jsp-file>/AccountManage.jsp</jsp-file>
@@ -20,11 +28,13 @@
         <servlet-name>AccountManageJSP</servlet-name>
         <url-pattern>/AccountManage</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AccountManageServlet</servlet-name>
+        <servlet-class>Account.AccountManage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AccountManageServlet</servlet-name>
         <url-pattern>/Manage</url-pattern>
     </servlet-mapping>
-    <welcome-file-list>
-        <welcome-file>Authentication.jsp</welcome-file>
-    </welcome-file-list>
 </web-app>

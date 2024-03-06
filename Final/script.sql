@@ -10,7 +10,7 @@ CREATE TABLE Users
     id INT IDENTITY(1,1),
     name VARCHAR(25),
     password VARCHAR(25),
-    active INT DEFAULT 0
+    active INT DEFAULT 1
 );
 
 select *

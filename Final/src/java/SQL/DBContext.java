@@ -20,6 +20,11 @@ public class DBContext {
         }
     }
 
+    public void registerUser(String userName, String password) throws SQLException{
+        String registeration = "insert into Users values ('" + userName + "', '" + password + "', 1)";
+        this.connection.prepareStatement(registeration).executeUpdate();
+    }
+
     public ResultSet getQuery(String query) throws SQLException {
         PreparedStatement stmt = this.connection.prepareStatement(query);
         ResultSet rs = stmt.executeQuery();
