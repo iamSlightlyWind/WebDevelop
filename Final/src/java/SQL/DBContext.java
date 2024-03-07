@@ -37,6 +37,7 @@ public class DBContext {
 
     public void registerUser(String userName, String password) throws SQLException{
         String registeration = "insert into Users values ('" + userName + "', '" + password + "', 1)";
+        String addUserDetails = "insert into UserDetails";
         this.connection.prepareStatement(registeration).executeUpdate();
     }
 

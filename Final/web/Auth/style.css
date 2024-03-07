@@ -1,0 +1,60 @@
+html {
+    background-image: url("background.jpg");
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+body {
+    display: block;
+    width: auto;
+    height: 95vh;
+    margin: 3vh;
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.loginBlock {
+    display: block;
+    align-self: center;
+    width: auto;
+    height: 65vh;
+    margin: 15vh 25vw 15vh 25vw;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.65);
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.2);
+}
+
+.formButtons {
+    float: left;
+    border: red 1px solid;
+    height: 100%;
+    width: 38%;
+}
+
+.formInputs {
+    border: blue 1px solid;
+    height: 100%;
+    width: 58%;
+    float: right;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    border-radius: 20px;
+    color: white;
+    margin: 20% auto 20% auto;
+    cursor: pointer;
+    width: 80%;
+    height: 7.5%;
+    transition: background-color 0.3s ease;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
