@@ -15,7 +15,6 @@ $ git clone https://github.com/iamSlightlyWind/WebDevelop
 2. Import the projects into your preferred Java IDE.
 
 ## Note
-Notes
 Ensure that you have Apache Tomcat 10 installed on your system.
 If you intend to use the projects in Visual Studio Code, make sure to include the required JAR libraries and Apache Tomcat server libraries in your settings.json as follows:
 ```json
