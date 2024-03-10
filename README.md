@@ -22,7 +22,7 @@ If you intend to use the projects in Visual Studio Code, make sure to include th
 {
     "java.project.referencedLibraries": [
         "../Libraries/*.jar",
-        "/usr/share/tomcat10/*.jar"
+        "/usr/share/tomcat10/lib/*.jar"
     ]
 }
 ```
