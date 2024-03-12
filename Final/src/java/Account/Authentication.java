@@ -28,7 +28,7 @@ public class Authentication extends HttpServlet {
                     if (rs.getString("name").equals(userName)) {
                         user = true;
                         if (rs.getString("password").equals(password)) {
-                            if(rs.getString("active").equals("1")){
+                            if (rs.getString("active").equals("1")) {
                                 completed = true;
                             }
                         }
@@ -45,19 +45,30 @@ public class Authentication extends HttpServlet {
                 }
             } else {
                 if (!user) {
-                    db.registerUser(userName, password);
                     request.setAttribute("accountStatus", "Register successful");
                     completed = true;
+
+                    UserDetails newUser = new UserDetails(
+                            request.getParameter("firstName"),
+                            request.getParameter("lastName"),
+                            request.getParameter("email"),
+                            request.getParameter("userName"),
+                            request.getParameter("password"));
+
+                    db.registerUser(newUser);
+
                 } else if (user) {
+                    completed = false;
                     request.setAttribute("accountStatus", "Register failed");
                 }
             }
 
             if (completed) {
                 request.getSession().setAttribute("user", userName);
+                response.sendRedirect("./AccountManage");
             }
 
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Authentication.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/" + accountAction + ".jsp");
             dispatcher.forward(request, response);
         }
     }

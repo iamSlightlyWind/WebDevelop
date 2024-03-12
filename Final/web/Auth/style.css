@@ -19,42 +19,61 @@ body {
     overflow-x: hidden;
 }
 
-.loginBlock {
+form {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+}
+
+form div {
+    margin-bottom: 10px;
+}
+
+.loginBlock > div:first-child {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-right: 10px;
+}
+
+.loginBlock input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.loginBlock input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.loginBlock > div:last-child {
+    width: 60%;
+}
+
+.loginBlock input[type="text"],
+.loginBlock input[type="email"],
+.loginBlock input[type="password"] {
     display: block;
-    align-self: center;
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.loginBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     width: auto;
     height: 65vh;
     margin: 15vh 25vw 15vh 25vw;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.65);
     box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.2);
-}
-
-.formButtons {
-    float: left;
-    border: red 1px solid;
-    height: 100%;
-    width: 38%;
-}
-
-.formInputs {
-    border: blue 1px solid;
-    height: 100%;
-    width: 58%;
-    float: right;
-}
-
-input[type=submit] {
-    background-color: #4CAF50;
-    border-radius: 20px;
-    color: white;
-    margin: 20% auto 20% auto;
-    cursor: pointer;
-    width: 80%;
-    height: 7.5%;
-    transition: background-color 0.3s ease;
-}
-
-input[type=submit]:hover {
-    background-color: #45a049;
 }

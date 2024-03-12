@@ -1,3 +1,5 @@
+USE master
+
 -- drop Final database
 DROP DATABASE Final;
 
@@ -39,7 +41,6 @@ create table Messages
 );
 
 
-
 USE Final;
 select *
 from Users
@@ -49,3 +50,5 @@ select *
 from MessageGroup
 select *
 from Messages
+
+SELECT MAX(id) FROM Users

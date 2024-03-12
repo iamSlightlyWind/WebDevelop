@@ -16,7 +16,7 @@ public class AccountManage extends HttpServlet {
 
         if (action.equals("Logout")) {
             request.getSession().invalidate();
-            response.sendRedirect(request.getContextPath() + "/Authentication");
+            response.sendRedirect(request.getContextPath() + "/Login");
             return;
         }
 
@@ -34,7 +34,7 @@ public class AccountManage extends HttpServlet {
         if (action.equals("deleteAccount")) {
             db.deleteUser((String) request.getSession().getAttribute("user"));
             request.getSession().invalidate();
-            response.sendRedirect(request.getContextPath() + "/Authentication");
+            response.sendRedirect(request.getContextPath() + "/Login");
             return;
         }
 

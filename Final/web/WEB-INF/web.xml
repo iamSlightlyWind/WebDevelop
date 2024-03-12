@@ -2,14 +2,23 @@
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <!-- Authentication -->
     <servlet>
-        <servlet-name>AuthenticationJSP</servlet-name>
-        <jsp-file>/Authentication.jsp</jsp-file>
+        <servlet-name>Login</servlet-name>
+        <jsp-file>/Login.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>AuthenticationJSP</servlet-name>
-        <url-pattern>/Authentication</url-pattern>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
     </servlet-mapping>
-    
+
+    <servlet>
+        <servlet-name>Register</servlet-name>
+        <jsp-file>/Register.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>AuthenticationServlet</servlet-name>
         <servlet-class>Account.Authentication</servlet-class>
