@@ -19,22 +19,8 @@ body {
     overflow-x: hidden;
 }
 
-.bodyDiv {
-    display: block;
-    height: 100%;
-    width: 80%;
-    overflow-y: auto;
-    background-color: transparent;
-    padding: 6% 10%;
-}
-
 .welcome {
     size: 25px;
-}
-
-.forms {
-    padding: 0% 5%;
-    padding-bottom: 2%;
 }
 
 header {
@@ -83,10 +69,6 @@ header button:first-child {
     margin-right: 10px;
 }
 
-.formTitle {
-    font-size: 30px;
-}
-
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -129,7 +111,7 @@ form .fullBox {
 }
 
 .deleteForm {
-    text-align: center; /* To center the elements */
+    text-align: center;
 }
 
 input[type="text"], input[type="email"]{
@@ -138,4 +120,45 @@ input[type="text"], input[type="email"]{
 
 input[type="password"] {
     font-size: 25px;
+}
+
+@media screen and (orientation: landscape) {
+    .bodyDiv {
+        display: block;
+        height: 100%;
+        width: 80%;
+        overflow-y: auto;
+        background-color: transparent;
+        padding: 5% 10%;
+    }
+
+    .formTitle {
+        font-size: 30px;
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
+
+    .forms {
+        padding: 0% 5%;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    .bodyDiv {
+        display: block;
+        height: 100%;
+        width: 80%;
+        overflow-y: auto;
+        background-color: transparent;
+        padding: 6% 10%;
+    }
+
+    .formTitle {
+        font-size: 30px;
+    }
+
+    .forms {
+        padding: 0% 5%;
+        padding-bottom: 2%;
+    }
 }
