@@ -141,6 +141,10 @@ input[type="password"] {
     .forms {
         padding: 0% 5%;
     }
+
+    .deleteForm{
+        padding-top: 1%;
+    }
 }
 
 @media screen and (orientation: portrait) {
