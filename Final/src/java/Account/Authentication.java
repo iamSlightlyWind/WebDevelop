@@ -65,7 +65,7 @@ public class Authentication extends HttpServlet {
 
             if (completed) {
                 request.getSession().setAttribute("user", userName);
-                response.sendRedirect("./AccountManage");
+                response.sendRedirect("./Manage");
             }
 
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/" + accountAction + ".jsp");

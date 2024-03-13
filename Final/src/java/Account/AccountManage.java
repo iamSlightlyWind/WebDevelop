@@ -12,6 +12,9 @@ public class AccountManage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
         DBContext db = new DBContext();
 
         if (action.equals("Logout")) {
@@ -38,15 +41,20 @@ public class AccountManage extends HttpServlet {
             return;
         }
 
-        try (PrintWriter out = response.getWriter()) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/AccountManage.jsp");
-            dispatcher.forward(request, response);
-        }
+        UserDetails currentUser = db.getUserDetails((String) request.getSession().getAttribute("user"));
+
+        request.setAttribute("firstName", currentUser.firstName);
+        request.setAttribute("lastName", currentUser.lastName);
+        request.setAttribute("email", currentUser.email);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/AccountManage.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("GET request received for AccountManage servlet.");
         try {
             processRequest(request, response);
         } catch (Exception e) {

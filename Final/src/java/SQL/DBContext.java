@@ -40,11 +40,22 @@ public class DBContext {
     public void registerUser(UserDetails newUser) throws SQLException {
         String getLastId = getQueryString("SELECT MAX(id) FROM Users");
         int lastId = getLastId == null ? 0 : Integer.parseInt(getLastId);
-        //System.out.println(getLastId + " " + newUser.userName + " " + newUser.password + " " + newUser.firstName + " " + newUser.lastName + " " + newUser.email);
         String userInsert = "INSERT INTO Users VALUES ('" + newUser.userName + "', '" + newUser.password + "', 1)";
         String detailInsert = "INSERT INTO UserDetails VALUES (" + (lastId + 1) + ", '" + newUser.firstName + "', '" + newUser.lastName + "', '" + newUser.email + "')";
         this.connection.prepareStatement(userInsert).executeUpdate();
         this.connection.prepareStatement(detailInsert).executeUpdate();
+    }
+
+    public UserDetails getUserDetails(String user) throws NumberFormatException, SQLException{
+        int userID = Integer.parseInt(getQueryString("select ID from Users where name = '" + user + "'"));
+        String pass = getQueryString("select password from Users where name = '" + user + "'");
+        String firstName = getQueryString("select firstName from UserDetails where id = " + userID);
+        String lastName = getQueryString("select lastName from UserDetails where id = " + userID);
+        String email = getQueryString("select email from UserDetails where id = " + userID);
+        
+        UserDetails currentUser = new UserDetails(firstName, lastName, email, user, pass);
+
+        return currentUser;
     }
 
     public ResultSet getQuery(String query) throws SQLException {
@@ -54,7 +65,7 @@ public class DBContext {
         return rs;
     }
 
-    public String getQueryString(String query) throws SQLException { // result is only one string
+    public String getQueryString(String query) throws SQLException {
         PreparedStatement stmt = this.connection.prepareStatement(query);
         ResultSet rs = stmt.executeQuery();
         String result = "";

@@ -1,0 +1,141 @@
+html {
+    background-image: url("background.jpg");
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+body {
+    display: block;
+    height: 95vh;
+    margin: 3vh;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    backdrop-filter: blur(1px);
+    border: 2px solid #ccc;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.bodyDiv {
+    display: block;
+    height: 100%;
+    width: 80%;
+    overflow-y: auto;
+    background-color: transparent;
+    padding: 6% 10%;
+}
+
+.welcome {
+    size: 25px;
+}
+
+.forms {
+    padding: 0% 5%;
+    padding-bottom: 2%;
+}
+
+header {
+    display: block;
+    position: fixed;
+    width: 96%;
+    z-index: 1000;
+    height: 4%;
+    border-bottom: 2px solid #ccc;
+    background-color: rgba(255, 255, 255);
+    padding: 1% 2%;
+}
+
+header img {
+    height: 100%;
+    width: fit-content;
+}
+
+header h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+header img, header h1 {
+    float: left;
+}
+
+header .right, header .left {
+    display: block;
+    height: 100%;
+    width: fit-content;
+    background-color: transparent;
+    border: none;
+}
+
+header .right {
+    float: right;
+    margin-left: 3%;
+}
+
+header .left {
+    float: left;
+}
+
+header button:first-child {
+    margin-right: 10px;
+}
+
+.formTitle {
+    font-size: 30px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2%;
+}
+
+form .halfBox {
+    flex: 0 0 49%;
+    font-size: 20px;
+}
+
+.halfBox input{
+    display: block;
+    width: 95%;
+    height: 5vh;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form .fullBox {
+    display: inline-block;
+    width: 97.5%;
+    font-size: 20px;
+}
+
+.fullBox input{
+    display: block;
+    width: 100%;
+    height: 5vh;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.deleteForm label,
+.deleteForm input[type="checkbox"],
+.deleteForm input[type="submit"] {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.deleteForm {
+    text-align: center; /* To center the elements */
+}
+
+input[type="text"], input[type="email"]{
+    font-size: 20px;
+}
+
+input[type="password"] {
+    font-size: 25px;
+}

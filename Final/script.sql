@@ -20,7 +20,7 @@ CREATE TABLE Users
 
 CREATE TABLE UserDetails
 (
-    userID INT REFERENCES Users(id),
+    id INT REFERENCES Users(id),
     firstName NVARCHAR(25),
     lastName NVARCHAR(25),
     email VARCHAR(50)
@@ -51,4 +51,4 @@ from MessageGroup
 select *
 from Messages
 
-SELECT MAX(id) FROM Users
+select password from Users where name = 'phong'
