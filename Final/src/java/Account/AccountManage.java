@@ -23,6 +23,15 @@ public class AccountManage extends HttpServlet {
             return;
         }
 
+        if (action.equals("changeDetails")) {
+            db.updateDetails(new UserDetails(
+                    request.getParameter("firstName"),
+                    request.getParameter("lastName"),
+                    request.getParameter("email"),
+                    (String) request.getSession().getAttribute("user"),
+                    "asd"));
+        }
+
         if (action.equals("changePassword")) {
             if (db.getPassword((String) request.getSession().getAttribute("user"))
                     .equals(request.getParameter("oldPassword"))) {

@@ -27,6 +27,20 @@ public class DBContext {
         this.connection.prepareStatement(deletion).executeUpdate();
     }
 
+    public void updateDetails(UserDetails user) throws NumberFormatException, SQLException {
+        System.out.println("Got request!");
+        String userID = getQueryString("select id from Users where name = '" + user.userName + "'");
+        String firstName = "update UserDetails set firstName = '" + user.firstName + "' where id = " + userID;
+        String lastName = "update UserDetails set lastName = '" + user.lastName    + "' where id = " + userID;
+        String email = "update UserDetails set email = '" + user.email             + "' where id = " + userID;
+        this.connection.prepareStatement(firstName).executeUpdate();
+        System.out.println("Got fn!");
+        this.connection.prepareStatement(lastName).executeUpdate();
+        System.out.println("Got ln!");
+        this.connection.prepareStatement(email).executeUpdate();
+        System.out.println("Got em!");
+    }
+
     public void changePassword(String userName, String password) throws SQLException {
         String deletion = "UPDATE Users SET password = '" + password + "' WHERE name = '" + userName + "';";
         this.connection.prepareStatement(deletion).executeUpdate();
