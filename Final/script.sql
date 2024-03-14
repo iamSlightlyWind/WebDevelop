@@ -50,5 +50,3 @@ select *
 from MessageGroup
 select *
 from Messages
-
-select password from Users where name = 'phong'
