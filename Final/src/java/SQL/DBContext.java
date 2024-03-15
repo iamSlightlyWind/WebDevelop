@@ -22,11 +22,6 @@ public class DBContext {
         }
     }
 
-    public void addFriend(int userID, int friendID) throws SQLException {
-        String query = "INSERT INTO FriendStatus VALUES (" + userID + ", " + friendID + ")";
-        this.connection.prepareStatement(query).executeUpdate();
-    }
-
     public int getID(String userName) throws SQLException {
         String query = "SELECT id FROM Users WHERE name = '" + userName + "';";
         return Integer.parseInt(getQueryString(query));
@@ -68,22 +63,27 @@ public class DBContext {
         this.connection.prepareStatement(detailInsert).executeUpdate();
     }
 
-    public boolean friendExists(int userID, int friendID) throws SQLException {
-        String query = "SELECT * FROM FriendStatus WHERE userID = " + userID + " AND friendID = " + friendID;
-        String result = getQueryString(query);
-        return result != null;
-    }
-
     public ResultSet searchUserList(int currentUser, String searchString) throws SQLException {
         String query = "SELECT firstName, id FROM UserDetails WHERE id NOT IN (SELECT friendID FROM FriendStatus WHERE userID = "
-                + currentUser + ") AND id != " + currentUser + " AND firstName LIKE '%" + searchString + "%'";
+                + currentUser + " UNION SELECT userID FROM FriendStatus WHERE friendID = " + currentUser + ") AND id != " + currentUser + " AND firstName LIKE '%" + searchString + "%'";
         return getQuery(query);
     }
 
     public ResultSet searchFriendList(int currentUser, String searchString) throws SQLException {
         String query = "SELECT firstName, id FROM UserDetails WHERE id IN (SELECT friendID FROM FriendStatus WHERE userID = "
-                + currentUser + ") AND firstName LIKE '%" + searchString + "%'";
+                + currentUser + " UNION SELECT userID FROM FriendStatus WHERE friendID = " + currentUser
+                + ") AND firstName LIKE '%" + searchString + "%'";
         return getQuery(query);
+    }
+
+    public void addFriend(int userID, int friendID) throws SQLException {
+        String query = "INSERT INTO FriendStatus VALUES (" + userID + ", " + friendID + ")";
+        this.connection.prepareStatement(query).executeUpdate();
+    }
+
+    public void removeFriend(int userID, int friendID) throws SQLException {
+        String query = "DELETE FROM FriendStatus WHERE (userID = " + userID + " AND friendID = " + friendID + ") OR (userID = " + friendID + " AND friendID = " + userID + ")";
+        this.connection.prepareStatement(query).executeUpdate();
     }
 
     public UserDetails getUserDetails(String user) throws NumberFormatException, SQLException {

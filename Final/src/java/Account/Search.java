@@ -40,11 +40,22 @@ public class Search extends HttpServlet {
 
             while (results.next()) {
                 if (results.getInt("id") != userID) {
-                    friendList.add(new UserDetails(results.getString("firstName"), results.getInt("id") + "", "notNeeded",
-                            "notNeeded", "notNeeded"));
+                    friendList
+                            .add(new UserDetails(results.getString("firstName"), results.getInt("id") + "", "notNeeded",
+                                    "notNeeded", "notNeeded"));
                 }
             }
             request.setAttribute("friendList", friendList);
+        }
+
+        if (action.equals("addFriend")) {
+            int friendID = Integer.parseInt(request.getParameter("id"));
+            db.addFriend(userID, friendID);
+        }
+
+        if (action.equals("removeFriend")) {
+            int friendID = Integer.parseInt(request.getParameter("id"));
+            db.removeFriend(userID, friendID);
         }
 
         try (PrintWriter out = response.getWriter()) {

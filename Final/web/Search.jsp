@@ -46,10 +46,10 @@
                     </form>
                     <c:forEach var="user" items="${userList}">
                         <div class="user">
-                            <p>${user.firstName}</p>
-                            <form action="/Search" method="post">
+                            <form action="SearchFor" method="GET">
+                                <p>${user.firstName}</p>
                                 <input type="hidden" name="id" value="${user.lastName}">
-                                <button type="submit" name="action" value="addFriend">Add Friend</button>
+                                <button class="addFriend" type="submit" name="action" value="addFriend">Add Friend</button>
                             </form>
                         </div>
                     </c:forEach>
@@ -63,9 +63,10 @@
                     <c:forEach var="user" items="${friendList}">
                         <div class="user">
                             <p>${user.firstName}</p>
-                            <form action="/Search" method="post">
+                            <form action="SearchFor" method="GET">
                                 <input type="hidden" name="id" value="${user.lastName}">
-                                <button type="submit" name="action" value="addFriend">Add Friend</button>
+                                <button class="removeFriend" type="submit" name="action" value="removeFriend">Remove Friend</button>
+                                <button class="messageFriend" type="submit" name="action" value="Message">Message</button>
                             </form>
                         </div>
                     </c:forEach>

@@ -97,8 +97,26 @@ header button:first-child {
     margin-bottom: 2%;
 }
 
-.half button[type="submit"] {
-    display: block;
-    width: 70%;
+.user button[type="submit"] {
+    width: 50%;
+    height: 100%;
     margin: auto;
+    margin-left: auto;
+}
+
+.addFriend {
+    background-color: #00ff00;
+}
+
+.removeFriend {
+    background-color: #ff3300;
+}
+
+.messageFriend {
+    background-color: #3399ff;
+}
+
+.user form p,
+.user form button {
+    display: inline-block;
 }
