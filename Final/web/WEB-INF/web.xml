@@ -9,7 +9,14 @@
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>Account.Search</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/SearchFor</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>Register</servlet-name>
         <jsp-file>/Register.jsp</jsp-file>
@@ -18,7 +25,14 @@
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <jsp-file>/Search.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/Search</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>AuthenticationServlet</servlet-name>
         <servlet-class>Account.Authentication</servlet-class>
@@ -27,7 +41,6 @@
         <servlet-name>AuthenticationServlet</servlet-name>
         <url-pattern>/Auth</url-pattern>
     </servlet-mapping>
-
     <!-- AccountManage -->
     <servlet>
         <servlet-name>AccountManageJSP</servlet-name>
@@ -37,7 +50,6 @@
         <servlet-name>AccountManageJSP</servlet-name>
         <url-pattern>/AccountManage</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>AccountManageServlet</servlet-name>
         <servlet-class>Account.AccountManage</servlet-class>

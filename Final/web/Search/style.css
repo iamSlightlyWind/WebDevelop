@@ -1,0 +1,104 @@
+html {
+    background-image: url("background.jpg");
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+body {
+    display: block;
+    height: 95vh;
+    margin: 3vh;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    backdrop-filter: blur(1px);
+    border: 2px solid #ccc;
+    overflow: hidden;
+}
+
+.scrollable-content {
+    height: calc(100% - 20px);
+    overflow-y: auto;
+}
+
+header {
+    display: block;
+    position: fixed;
+    width: 96%;
+    z-index: 1000;
+    height: 4%;
+    border-bottom: 2px solid #ccc;
+    background-color: rgba(255, 255, 255);
+    padding: 1% 2%;
+}
+
+header img {
+    height: 100%;
+    width: fit-content;
+}
+
+header h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+header img,
+header h1 {
+    float: left;
+}
+
+header .right,
+header .left {
+    display: block;
+    height: 100%;
+    width: fit-content;
+    background-color: transparent;
+    border: none;
+}
+
+header .right {
+    float: right;
+    margin-left: 3%;
+}
+
+header .left {
+    float: left;
+}
+
+header button:first-child {
+    margin-right: 10px;
+}
+
+.bodyDiv {
+    display: block;
+    height: 100%;
+    width: 80%;
+    overflow-y: auto;
+    background-color: transparent;
+    padding: 5% 10%;
+    margin-top: 2vh;
+}
+
+.half {
+    display: block;
+    width: calc(50%);
+    float: left;
+    padding: 0 2%;
+    box-sizing: border-box;
+}
+
+.half input {
+    display: block;
+    width: 90%;
+    margin: auto;
+    padding: 2%;
+    margin-bottom: 2%;
+}
+
+.half button[type="submit"] {
+    display: block;
+    width: 70%;
+    margin: auto;
+}

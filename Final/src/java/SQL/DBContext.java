@@ -22,6 +22,16 @@ public class DBContext {
         }
     }
 
+    public void addFriend(int userID, int friendID) throws SQLException {
+        String query = "INSERT INTO FriendStatus VALUES (" + userID + ", " + friendID + ")";
+        this.connection.prepareStatement(query).executeUpdate();
+    }
+
+    public int getID(String userName) throws SQLException {
+        String query = "SELECT id FROM Users WHERE name = '" + userName + "';";
+        return Integer.parseInt(getQueryString(query));
+    }
+
     public void deleteUser(String userName) throws SQLException {
         String deletion = "UPDATE Users SET active = 0 WHERE name = '" + userName + "';";
         this.connection.prepareStatement(deletion).executeUpdate();
@@ -29,16 +39,13 @@ public class DBContext {
 
     public void updateDetails(UserDetails user) throws NumberFormatException, SQLException {
         System.out.println("Got request!");
-        String userID = getQueryString("select id from Users where name = '" + user.userName + "'");
+        int userID = getID(user.userName);
         String firstName = "update UserDetails set firstName = '" + user.firstName + "' where id = " + userID;
-        String lastName = "update UserDetails set lastName = '" + user.lastName    + "' where id = " + userID;
-        String email = "update UserDetails set email = '" + user.email             + "' where id = " + userID;
+        String lastName = "update UserDetails set lastName = '" + user.lastName + "' where id = " + userID;
+        String email = "update UserDetails set email = '" + user.email + "' where id = " + userID;
         this.connection.prepareStatement(firstName).executeUpdate();
-        System.out.println("Got fn!");
         this.connection.prepareStatement(lastName).executeUpdate();
-        System.out.println("Got ln!");
         this.connection.prepareStatement(email).executeUpdate();
-        System.out.println("Got em!");
     }
 
     public void changePassword(String userName, String password) throws SQLException {
@@ -55,18 +62,37 @@ public class DBContext {
         String getLastId = getQueryString("SELECT MAX(id) FROM Users");
         int lastId = getLastId == null ? 0 : Integer.parseInt(getLastId);
         String userInsert = "INSERT INTO Users VALUES ('" + newUser.userName + "', '" + newUser.password + "', 1)";
-        String detailInsert = "INSERT INTO UserDetails VALUES (" + (lastId + 1) + ", '" + newUser.firstName + "', '" + newUser.lastName + "', '" + newUser.email + "')";
+        String detailInsert = "INSERT INTO UserDetails VALUES (" + (lastId + 1) + ", '" + newUser.firstName + "', '"
+                + newUser.lastName + "', '" + newUser.email + "')";
         this.connection.prepareStatement(userInsert).executeUpdate();
         this.connection.prepareStatement(detailInsert).executeUpdate();
     }
 
-    public UserDetails getUserDetails(String user) throws NumberFormatException, SQLException{
-        int userID = Integer.parseInt(getQueryString("select ID from Users where name = '" + user + "'"));
+    public boolean friendExists(int userID, int friendID) throws SQLException {
+        String query = "SELECT * FROM FriendStatus WHERE userID = " + userID + " AND friendID = " + friendID;
+        String result = getQueryString(query);
+        return result != null;
+    }
+
+    public ResultSet searchUserList(int currentUser, String searchString) throws SQLException {
+        String query = "SELECT firstName, id FROM UserDetails WHERE id NOT IN (SELECT friendID FROM FriendStatus WHERE userID = "
+                + currentUser + ") AND id != " + currentUser + " AND firstName LIKE '%" + searchString + "%'";
+        return getQuery(query);
+    }
+
+    public ResultSet searchFriendList(int currentUser, String searchString) throws SQLException {
+        String query = "SELECT firstName, id FROM UserDetails WHERE id IN (SELECT friendID FROM FriendStatus WHERE userID = "
+                + currentUser + ") AND firstName LIKE '%" + searchString + "%'";
+        return getQuery(query);
+    }
+
+    public UserDetails getUserDetails(String user) throws NumberFormatException, SQLException {
+        int id = getID(user);
         String pass = getQueryString("select password from Users where name = '" + user + "'");
-        String firstName = getQueryString("select firstName from UserDetails where id = " + userID);
-        String lastName = getQueryString("select lastName from UserDetails where id = " + userID);
-        String email = getQueryString("select email from UserDetails where id = " + userID);
-        
+        String firstName = getQueryString("select firstName from UserDetails where id = " + id);
+        String lastName = getQueryString("select lastName from UserDetails where id = " + id);
+        String email = getQueryString("select email from UserDetails where id = " + id);
+
         UserDetails currentUser = new UserDetails(firstName, lastName, email, user, pass);
 
         return currentUser;

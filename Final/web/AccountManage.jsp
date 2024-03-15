@@ -20,6 +20,9 @@
             function logout() {
                 window.location.href = "Manage?action=Logout";
             }
+            function search() {
+                window.location.href = "Search";
+            }
         </script>
     </head>
 
@@ -30,7 +33,7 @@
                 <h1>Account Management</h1>
             </div>
             <button class="right" onclick="logout()"><img src="./Manage/logout.png" alt="Button 2"></button>
-            <button class="right"><img src="./Manage/search.png" alt="Button 1"></button>
+            <button class="right" onclick="search()"><img src="./Manage/search.png" alt="Button 1"></button>
         </header>
         <div class="bodyDiv">
             <h1 class="Welcome">Hello, <%= session.getAttribute("user") %>

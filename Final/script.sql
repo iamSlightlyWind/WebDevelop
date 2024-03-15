@@ -18,6 +18,11 @@ CREATE TABLE Users
     active INT DEFAULT 1
 );
 
+create table FriendStatus(
+    userID int REFERENCES Users(id),
+    friendID int REFERENCES Users(id),
+);
+
 CREATE TABLE UserDetails
 (
     id INT REFERENCES Users(id),
@@ -42,11 +47,29 @@ create table Messages
 
 
 USE Final;
+
+select *
+from Users
+
+select *
+from FriendStatus
+
+select *
+from UserDetails
+
+select *
+from MessageGroup
+
+select *
+from Messages
+
+insert into FriendStatus values(1, 2);
+insert into FriendStatus values(1, 4);
+
 select *
 from Users
 select *
-from UserDetails
-select *
-from MessageGroup
-select *
-from Messages
+from FriendStatus
+SELECT firstName, id FROM UserDetails WHERE id IN (SELECT friendID FROM FriendStatus WHERE userID = 1)
+SELECT firstName, id FROM UserDetails WHERE id NOT IN (SELECT friendID FROM FriendStatus WHERE userID = 1) AND id != 1;
+SELECT * FROM FriendStatus WHERE userID = 1 AND friendID = 2

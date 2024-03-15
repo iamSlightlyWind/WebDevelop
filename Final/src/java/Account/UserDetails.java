@@ -14,4 +14,12 @@ public class UserDetails {
         this.userName = userName;
         this.password = password;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
 }

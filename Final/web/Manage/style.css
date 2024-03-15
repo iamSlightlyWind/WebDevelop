@@ -15,12 +15,12 @@ body {
     border-radius: 10px;
     backdrop-filter: blur(1px);
     border: 2px solid #ccc;
-    overflow-y: hidden;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
-.welcome {
-    size: 25px;
+.scrollable-content {
+    height: calc(100% - 20px);
+    overflow-y: auto;
 }
 
 header {
@@ -67,6 +67,10 @@ header .left {
 
 header button:first-child {
     margin-right: 10px;
+}
+
+.welcome {
+    size: 25px;
 }
 
 .container {
