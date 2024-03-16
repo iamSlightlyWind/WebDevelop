@@ -30,20 +30,22 @@
             <button type="submit" name="action" value="search">Search</button>
         </form>
 
-        <table>
-            <tr>
-                <th>Paper ID</th>
-                <th>Title</th>
-                <th>Published Date</th>
-            </tr>
-            <c:forEach var="paper" items="${paperList}">
+        <c:if test="${not empty paperList}">
+            <table>
                 <tr>
-                    <th>${paper.id}</th>
-                    <th>${paper.title}</th>
-                    <th>${paper.date}</th>
+                    <th>Paper ID</th>
+                    <th>Title</th>
+                    <th>Published Date</th>
                 </tr>
-            </c:forEach>
-        </table>
+                <c:forEach var="paper" items="${paperList}">
+                    <tr>
+                        <th>${paper.id}</th>
+                        <th>${paper.title}</th>
+                        <th>${paper.date}</th>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:if>
 
     </body>
 </html>
