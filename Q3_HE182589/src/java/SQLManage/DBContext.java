@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 public class DBContext {
 
@@ -39,6 +40,17 @@ public class DBContext {
         ResultSet rs = stmt.executeQuery();
 
         return rs;
+    }
+
+    public void addPaper(int[] authors, Paper newPaper) throws SQLException {
+        String paperQuery = "Insert into Paper values (" + newPaper.id + ", '" + newPaper.title + "', '" + newPaper.date + "')";
+        this.connection.prepareStatement(paperQuery).executeUpdate();
+
+        for (int authorID : authors) {
+            this.connection.prepareStatement(
+            "INSERT INTO Author_Paper VALUES (" + newPaper.id + ", " + authorID + ")"
+            ).executeUpdate();
+        }
     }
 
     public String getQueryString(String query) throws SQLException {

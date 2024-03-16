@@ -50,7 +50,6 @@ public class Search extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
             request.setAttribute("authorList", authorList);
-
             RequestDispatcher dispatcher = request.getRequestDispatcher("/search.jsp");
             dispatcher.forward(request, response);
         }

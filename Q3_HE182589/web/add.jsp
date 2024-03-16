@@ -13,20 +13,22 @@
         }
     </style>
     <body>
-        <form>
+        <form action="add" method="get">
             <div class="half">
                 <label>Paper ID: </label><br>
                 <label>Title: </label><br>
-                <label>Title: </label><br>
+                <label>Date: </label><br>
             </div>
             <div class="half">
                 <input type="text" name="paperID"><br>
-                <input type="text" name="paperID"><br>
-                <input type="text" name="paperID">(yyyy-MM-dd)<br>
+                <input type="text" name="title"><br>
+                <input type="text" name="date">(yyyy-MM-dd)
             </div>
-            <c:forEach>
-                
+            <br>
+            <c:forEach var="author" items="${authorList}">
+                <input type="checkbox" name="id" value="${author.id}">${author.name}<br>
             </c:forEach>
+            <button type="submit" name="action" value="add">Save</button>
         </form>
     </body>
 </html>
