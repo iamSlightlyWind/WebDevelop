@@ -49,7 +49,8 @@
                             <form action="SearchFor" method="GET">
                                 <p>${user.firstName}</p>
                                 <input type="hidden" name="id" value="${user.lastName}">
-                                <button class="addFriend" type="submit" name="action" value="addFriend">Add Friend</button>
+                                <button class="addFriend" type="submit" name="action" value="addFriend">Add
+                                    Friend</button>
                             </form>
                         </div>
                     </c:forEach>
@@ -62,11 +63,15 @@
                     </form>
                     <c:forEach var="user" items="${friendList}">
                         <div class="user">
-                            <p>${user.firstName}</p>
                             <form action="SearchFor" method="GET">
+                                <p>${user.firstName}</p>
                                 <input type="hidden" name="id" value="${user.lastName}">
-                                <button class="removeFriend" type="submit" name="action" value="removeFriend">Remove Friend</button>
-                                <button class="messageFriend" type="submit" name="action" value="Message">Message</button>
+                                <div class="friendOptions">
+                                    <button class="removeFriend" type="submit" name="action" value="removeFriend">Remove
+                                        Friend</button>
+                                    <button class="messageFriend" type="submit" name="action"
+                                        value="message">Message</button>
+                                </div>
                             </form>
                         </div>
                     </c:forEach>

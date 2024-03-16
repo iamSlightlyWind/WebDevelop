@@ -76,6 +76,11 @@ public class DBContext {
         return getQuery(query);
     }
 
+    public String getName(int id) throws SQLException {
+        String query = "SELECT name FROM Users WHERE id = " + id;
+        return getQueryString(query);
+    }
+
     public void addFriend(int userID, int friendID) throws SQLException {
         String query = "INSERT INTO FriendStatus VALUES (" + userID + ", " + friendID + ")";
         this.connection.prepareStatement(query).executeUpdate();

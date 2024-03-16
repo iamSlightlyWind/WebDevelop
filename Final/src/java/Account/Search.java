@@ -58,7 +58,12 @@ public class Search extends HttpServlet {
             db.removeFriend(userID, friendID);
         }
 
-        try (PrintWriter out = response.getWriter()) {
+        if (action.equals("message")) {
+            int friendID = Integer.parseInt(request.getParameter("id"));
+            request.getSession().setAttribute("messageID", friendID);
+            request.getSession().setAttribute("messageName", db.getName(friendID));
+            response.sendRedirect("./Message");
+        } else try (PrintWriter out = response.getWriter()) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/Search.jsp");
             dispatcher.forward(request, response);
         }
