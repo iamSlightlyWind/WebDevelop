@@ -18,17 +18,17 @@ CREATE TABLE Users
     active INT DEFAULT 1
 );
 
-create table FriendStatus(
-    userID int REFERENCES Users(id),
-    friendID int REFERENCES Users(id),
-);
-
 CREATE TABLE UserDetails
 (
     id INT REFERENCES Users(id),
     firstName NVARCHAR(25),
     lastName NVARCHAR(25),
     email VARCHAR(50)
+);
+
+create table FriendStatus(
+    userID int REFERENCES Users(id),
+    friendID int REFERENCES Users(id),
 );
 
 create table MessageGroup
@@ -56,21 +56,19 @@ BEGIN
     VALUES (@groupID, @senderID, @message, GETDATE())
 END
 
-USE Final;
+-- Inserting users into the Users table
+INSERT INTO Users (name, password, active) VALUES
+('Rachel', 'rachelr_89', 1),
+('Brandon', 'bparker24', 1),
+('Lauren', 'lscott_78', 1),
+('Joshua', 'jmurphy56', 1),
+('Megan', 'megcarter93', 1);
 
-select *
-from Users
+-- Inserting user details into the UserDetails table
+INSERT INTO UserDetails (id, firstName, lastName, email) VALUES
+(1, 'Rachel', 'Reed', 'rachel.reed@example.com'),
+(2, 'Brandon', 'Parker', 'brandon.parker@example.com'),
+(3, 'Lauren', 'Scott', 'lauren.scott@example.com'),
+(4, 'Joshua', 'Murphy', 'joshua.murphy@example.com'),
+(5, 'Megan', 'Carter', 'megan.carter@example.com');
 
-select *
-from FriendStatus
-
-select *
-from UserDetails
-
-select *
-from MessageGroup
-
-select *
-from Messages
-
-truncate table Messages

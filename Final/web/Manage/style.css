@@ -44,11 +44,13 @@ header h1 {
     margin: 0;
 }
 
-header img, header h1 {
+header img,
+header h1 {
     float: left;
 }
 
-header .right, header .left {
+header .right,
+header .left {
     display: block;
     height: 100%;
     width: fit-content;
@@ -84,12 +86,12 @@ form .halfBox {
     font-size: 20px;
 }
 
-.halfBox input{
+.halfBox input {
     display: block;
     width: 95%;
     height: 5vh;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
 }
 
 form .fullBox {
@@ -98,17 +100,16 @@ form .fullBox {
     font-size: 20px;
 }
 
-.fullBox input{
+.fullBox input {
     display: block;
     width: 100%;
     height: 5vh;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
 }
 
 .deleteForm label,
-.deleteForm input[type="checkbox"],
-.deleteForm input[type="submit"] {
+.deleteForm input[type="checkbox"] {
     display: inline-block;
     margin-right: 10px;
     vertical-align: middle;
@@ -118,12 +119,23 @@ form .fullBox {
     text-align: center;
 }
 
-input[type="text"], input[type="email"]{
+input[type="text"],
+input[type="email"] {
     font-size: 20px;
 }
 
 input[type="password"] {
     font-size: 25px;
+}
+
+input[type="submit"] {
+    display: inline-block;
+    padding: 1%;
+    border-radius: 5px;
+    margin-right: 10px;
+    border: 1.75px solid;
+    vertical-align: middle;
+    clear: both;
 }
 
 @media screen and (orientation: landscape) {
@@ -136,6 +148,10 @@ input[type="password"] {
         padding: 5% 10%;
     }
 
+    input[type="submit"] {
+        padding: 0.5% 1%;
+    }
+
     .formTitle {
         font-size: 30px;
         margin-top: 1%;
@@ -146,9 +162,13 @@ input[type="password"] {
         padding: 0% 5%;
     }
 
-    .deleteForm{
+    .deleteForm {
         padding-top: 1%;
     }
+}
+
+.deleteForm {
+    clear: both;
 }
 
 @media screen and (orientation: portrait) {

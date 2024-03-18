@@ -128,7 +128,7 @@ public class DBContext {
     }
 
     public ResultSet messageList(int groupID) throws SQLException {
-        String query = "SELECT * FROM Messages WHERE groupID = ?";
+        String query = "SELECT * FROM Messages WHERE groupID = ? ORDER BY time ASC";
         PreparedStatement stmt = this.connection.prepareStatement(query);
         stmt.setInt(1, groupID);
         return stmt.executeQuery();

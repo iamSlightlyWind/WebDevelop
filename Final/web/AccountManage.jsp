@@ -58,7 +58,7 @@
                         <label for="email">Email: </label>
                         <input type="email" id="email" name="email" placeholder="Email" required><br>
                     </div>
-                    <input style="float: right; margin-right: 5%;" type="submit" name="action" value="changeDetails">
+                    <input style="float: right; margin-right: 5%;" type="submit" name="action" value="Save">
                 </form>
             </div>
 
@@ -77,7 +77,7 @@
                         </div>
                     </div>
 
-                    <input style="float: right; margin-right: 5%;" type="submit" name="action" value="changePassword">
+                    <input style="float: right; margin-right: 5%;" type="submit" name="action" value="Change">
                     <p>${changePasswordStatus}</p>
                 </form>
             </div>
@@ -87,7 +87,7 @@
                     <p class="formTitle" style="margin: 2% 0 1% 0;"><b>Delete account</b></p>
                     <label for="deleteAccount" style="font-size: 17.5px;">Tick to delete account: </label>
                     <input type="checkbox" id="deleteAccount" name="deleteAccount" required><br>
-                    <input type="submit" style="margin-top: 2%;" name="action" value="deleteAccount">
+                    <input type="submit" style="margin-top: 2%;" name="action" value="Delete">
                 </form>
             </div>
         </div>

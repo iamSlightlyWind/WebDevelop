@@ -95,6 +95,8 @@ header button:first-child {
     margin: auto;
     padding: 2%;
     margin-bottom: 2%;
+    border: 2px solid #ccc;
+    border-radius: 5px;
 }
 
 .user button[type="submit"] {
@@ -105,16 +107,24 @@ header button:first-child {
 }
 
 .addFriend {
-    background-color: #00ff00;
-    width: 50%;
+    background-color: #00e700;
+    width: 40%;
 }
 
 .removeFriend {
-    background-color: #ff3300;
+    background-color: #e92f00;
 }
 
 .messageFriend {
-    background-color: #3399ff;
+    background-color: #0074e9;
+}
+
+.messageFriend,
+.removeFriend,
+.addFriend {
+    border-radius: 3px;
+    padding: 1%;
+    color: white;
 }
 
 .user form p,
@@ -128,7 +138,7 @@ header button:first-child {
 }
 
 .friendOptions button[type="submit"] {
-    width: 100%;
+    width: 90%;
     margin-top: 2%;
 }
 

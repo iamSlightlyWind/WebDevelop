@@ -23,7 +23,7 @@ public class AccountManage extends HttpServlet {
             return;
         }
 
-        if (action.equals("changeDetails")) {
+        if (action.equals("Save")) {
             db.updateDetails(new UserDetails(
                     request.getParameter("firstName"),
                     request.getParameter("lastName"),
@@ -32,7 +32,7 @@ public class AccountManage extends HttpServlet {
                     "asd"));
         }
 
-        if (action.equals("changePassword")) {
+        if (action.equals("Change")) {
             if (db.getPassword((String) request.getSession().getAttribute("user"))
                     .equals(request.getParameter("oldPassword"))) {
                 db.changePassword((String) request.getSession().getAttribute("user"),
@@ -43,7 +43,7 @@ public class AccountManage extends HttpServlet {
             }
         }
 
-        if (action.equals("deleteAccount")) {
+        if (action.equals("Delete")) {
             db.deleteUser((String) request.getSession().getAttribute("user"));
             request.getSession().invalidate();
             response.sendRedirect(request.getContextPath() + "/Login");

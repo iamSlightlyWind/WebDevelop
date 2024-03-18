@@ -46,7 +46,7 @@
                     <div class="innerInputDiv">
                         <form name="Mess" method="post">
                             <input type="text" placeholder="Type a message" name="message">
-                            <button type="submit" name="action" value="send">Send</button>
+                            <button type="submit" name="action" value="send"><b>Send</b></button>
                         </form>
                     </div>
                 </div>

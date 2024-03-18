@@ -12,8 +12,9 @@
 
         <form class="loginBlock" action="Auth" method="post">
             <div>
-                <input type="submit" name="action" value="Register">
-                <a href="Login">Already have an account?</a>
+                <h1>DropLetter</h1>
+                <input style="font-weight: bold;" type="submit" name="action" value="Register">
+                <a href="Login"><b>Already have an account?</b></a>
             </div>
             <div>
                 <div>

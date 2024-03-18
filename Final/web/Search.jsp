@@ -41,7 +41,7 @@
                 <div class="half">
                     <form action="SearchFor" method="post">
                         <input type="text" name="input" placeholder="Users">
-                        <button type="submit" name="action" value="searchUsers">Search</button>
+                        <button type="submit" style="padding: 0.5% 1%;" name="action" value="searchUsers">Search</button>
                         <p>${searchString}</p>
                     </form>
                     <c:forEach var="user" items="${userList}">
@@ -49,8 +49,7 @@
                             <form action="SearchFor" method="post">
                                 <p>${user.firstName}</p>
                                 <input type="hidden" name="id" value="${user.lastName}">
-                                <button class="addFriend" type="submit" name="action" value="addFriend">Add
-                                    Friend</button>
+                                <button class="addFriend" type="submit" name="action" value="addFriend"><b>Add Friend</b></button>
                             </form>
                         </div>
                     </c:forEach>
@@ -58,7 +57,7 @@
                 <div class="half">
                     <form action="SearchFor" method="post">
                         <input type="text" name="input" placeholder="Friends">
-                        <button type="submit" name="action" value="searchFriends">Search</button>
+                        <button type="submit" style="padding: 0.5% 1%;" name="action" value="searchFriends">Search</button>
                         <p>${searchString}</p>
                     </form>
                     <c:forEach var="user" items="${friendList}">
@@ -67,10 +66,9 @@
                                 <p>${user.firstName}</p>
                                 <input type="hidden" name="id" value="${user.lastName}">
                                 <div class="friendOptions">
-                                    <button class="removeFriend" type="submit" name="action" value="removeFriend">Remove
-                                        Friend</button>
+                                    <button class="removeFriend" type="submit" name="action" value="removeFriend"><b>Remove Friend</b></button>
                                     <button class="messageFriend" type="submit" name="action"
-                                        value="message">Message</button>
+                                        value="message"><b>Message</b></button>
                                 </div>
                             </form>
                         </div>
