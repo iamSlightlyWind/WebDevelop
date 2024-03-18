@@ -63,9 +63,32 @@ public class DBContext {
         this.connection.prepareStatement(detailInsert).executeUpdate();
     }
 
+    public int groupID(int user1ID, int user2ID) throws SQLException {
+        String query = "select groupID from MessageGroup where user1ID = " + user1ID + " and user2ID = " + user2ID;
+        String result = getQueryString(query);
+        int id;
+        if (result.equals("")) {
+            query = "select groupID from MessageGroup where user1ID = " + user2ID + " and user2ID = " + user1ID;
+            result = getQueryString(query);
+            if (result.equals("")) {
+                try {
+                    id = Integer.parseInt(getQueryString("select max(groupID) from MessageGroup")) + 1;
+                } catch (NumberFormatException e) {
+                    id = 1;
+                }
+                query = "insert into MessageGroup values (" + id + ", " + user1ID + ", " + user2ID + ")";
+                this.connection.prepareStatement(query).executeUpdate();
+                return id;
+            }
+        }
+
+        return Integer.parseInt(result);
+    }
+
     public ResultSet searchUserList(int currentUser, String searchString) throws SQLException {
         String query = "SELECT firstName, id FROM UserDetails WHERE id NOT IN (SELECT friendID FROM FriendStatus WHERE userID = "
-                + currentUser + " UNION SELECT userID FROM FriendStatus WHERE friendID = " + currentUser + ") AND id != " + currentUser + " AND firstName LIKE '%" + searchString + "%'";
+                + currentUser + " UNION SELECT userID FROM FriendStatus WHERE friendID = " + currentUser
+                + ") AND id != " + currentUser + " AND firstName LIKE '%" + searchString + "%'";
         return getQuery(query);
     }
 
@@ -87,7 +110,8 @@ public class DBContext {
     }
 
     public void removeFriend(int userID, int friendID) throws SQLException {
-        String query = "DELETE FROM FriendStatus WHERE (userID = " + userID + " AND friendID = " + friendID + ") OR (userID = " + friendID + " AND friendID = " + userID + ")";
+        String query = "DELETE FROM FriendStatus WHERE (userID = " + userID + " AND friendID = " + friendID
+                + ") OR (userID = " + friendID + " AND friendID = " + userID + ")";
         this.connection.prepareStatement(query).executeUpdate();
     }
 
@@ -101,6 +125,16 @@ public class DBContext {
         UserDetails currentUser = new UserDetails(firstName, lastName, email, user, pass);
 
         return currentUser;
+    }
+
+    public ResultSet messageList(int groupID) throws SQLException {
+        String query = "select * from Messages where groupID = " + groupID;
+        return getQuery(query);
+    }
+
+    public void sendMessasge(String message, int senderID, int groupID) throws SQLException {
+        String query = "insert into Messages values (" + groupID + ", " + senderID + ", '" + message + "')";
+        this.connection.prepareStatement(query).executeUpdate();
     }
 
     public ResultSet getQuery(String query) throws SQLException {
@@ -118,9 +152,5 @@ public class DBContext {
             result = rs.getString(1);
         }
         return result;
-    }
-
-    public void runQuery(String query) throws SQLException {
-        this.connection.prepareStatement(query).executeUpdate();
     }
 }

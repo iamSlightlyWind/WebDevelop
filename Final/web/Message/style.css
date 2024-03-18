@@ -23,17 +23,6 @@ body {
     overflow-y: auto;
 }
 
-header {
-    display: block;
-    position: fixed;
-    width: 96%;
-    z-index: 1000;
-    height: 4%;
-    border-bottom: 2px solid #ccc;
-    background-color: rgba(255, 255, 255);
-    padding: 1% 2%;
-}
-
 header img {
     height: 100%;
     width: fit-content;
@@ -81,68 +70,64 @@ header button:first-child {
     margin-top: 2vh;
 }
 
-.half {
+header {
     display: block;
-    width: calc(50%);
-    float: left;
-    padding: 0 2%;
+    position: fixed;
+    width: 96%;
+    z-index: 1000;
+    height: 4%;
+    border-bottom: 2px solid #ccc;
+    background-color: rgba(255, 255, 255);
+    padding: 1% 2%;
+}
+
+.messageDiv {
+    display: block;
+    width: 100%;
+    height: 75%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    border: 1px solid red;
+}
+
+.inputDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 7.5%;
+    box-sizing: border-box;
+    border: 1px solid blue;
+}
+
+.innerInputDiv {
+    width: 95%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+.innerInputDiv input[type="text"] {
+    width: 88%;
+    height: 100%;
+    border: 3px solid #ccc;
+    border-radius: 5px;
     box-sizing: border-box;
 }
 
-.half input {
-    display: block;
-    width: 90%;
-    margin: auto;
-    padding: 2%;
-    margin-bottom: 2%;
-}
-
-.user button[type="submit"] {
+.innerInputDiv button {
     height: 100%;
-    margin: auto;
-    margin-left: auto;
-    border: 2px solid gray;
+    width: 10%;
+    border: 3px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #fff;
+    cursor: pointer;
 }
 
-.addFriend {
-    background-color: #00ff00;
-    width: 50%;
-}
-
-.removeFriend {
-    background-color: #ff3300;
-}
-
-.messageFriend {
-    background-color: #3399ff;
-}
-
-.user form p,
-.user form button {
-    display: inline-block;
-}
-
-.friendOptions {
-    display: inline-block;
-    width: 50%;
-}
-
-.friendOptions button[type="submit"] {
-    width: 100%;
-    margin-top: 2%;
-}
-
-.user {
+form {
     display: block;
     width: 100%;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    margin-bottom: 2%;
-}
-
-.user p {
-    display: inline-block;
-    width: 40%;
     height: 100%;
-    padding-left: 4%;
 }

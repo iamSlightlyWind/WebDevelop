@@ -1,44 +1,19 @@
 package Messaging;
 
-import SQL.DBContext;
-import java.io.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+public class Message {
+    public String senderID, message;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-
-
-public class Message extends HttpServlet {
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
-        String action = request.getParameter("action");
-        DBContext db = new DBContext();
-
-        try (PrintWriter out = response.getWriter()) {
-            
-        }
+    public Message(String senderID, String message) {
+        this.senderID = senderID;
+        this.message = message;
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    public String getSenderID() {
+        return senderID;
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    public String getMessage() {
+        return message;
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
-
+    
 }

@@ -19,6 +19,20 @@ public class Authentication extends HttpServlet {
         boolean user = false;
         boolean completed = false;
 
+        if (accountAction.equals("create")) {
+            DBContext db = new DBContext();
+            db.registerUser(new UserDetails("Rachel", "Reed", "rachel.reed@example.com", "rachelr_89", "G#fJ5s2x"));
+            db.registerUser(new UserDetails("Brandon", "Parker", "brandon.parker@example.com", "bparker24", "T9m@Lq7z"));
+            db.registerUser(new UserDetails("Lauren", "Scott", "lauren.scott@example.com", "lscott_78", "W3p$K@8z"));
+            db.registerUser(new UserDetails("Joshua", "Murphy", "joshua.murphy@example.com", "jmurphy56", "X%tF2l9q"));
+            db.registerUser(new UserDetails("Megan", "Carter", "megan.carter@example.com", "megcarter93", "H@rP6s5t"));
+            db.registerUser(new UserDetails("Andrew", "Ward", "andrew.ward@example.com", "award87", "M@pQ8d7s"));
+            db.registerUser(new UserDetails("Natalie", "Russell", "natalie.russell@example.com", "natruss22", "F8e#W3x@"));
+            db.registerUser(new UserDetails("Ryan", "Barnes", "ryan.barnes@example.com", "ryanb_45", "L0q!Z6x8"));
+            db.registerUser(new UserDetails("Stephanie", "Powell", "stephanie.powell@example.com", "stephp_59", "S3@Lw9zP"));
+            db.registerUser(new UserDetails("Rebecca", "Anderson", "rebecca.anderson@example.com", "BeckyA22", "$p9#klW3"));            
+        }
+
         try (PrintWriter out = response.getWriter()) {
             DBContext db = new DBContext();
             ResultSet rs = db.getQuery("select * from Users");
@@ -65,6 +79,7 @@ public class Authentication extends HttpServlet {
 
             if (completed) {
                 request.getSession().setAttribute("user", userName);
+                request.getSession().setAttribute("userID", db.getID(userName));
                 response.sendRedirect("./Manage");
             }
 

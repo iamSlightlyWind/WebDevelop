@@ -10,7 +10,7 @@
 
     <body>
 
-        <form class="loginBlock" action="Auth" method="get">
+        <form class="loginBlock" action="Auth" method="post">
             <div>
                 <input type="submit" name="action" value="Register">
                 <a href="Login">Already have an account?</a>

@@ -39,7 +39,7 @@
             <h1 class="Welcome">Hello, <%= session.getAttribute("user") %>
             </h1>
             <div class="forms">
-                <form action="Manage" method="get">
+                <form action="Manage" method="post">
                     <p class="formTitle"><b>Change account details</b></p>
 
                     <div class="container">
@@ -63,7 +63,7 @@
             </div>
 
             <div class="forms">
-                <form action="Manage" method="get">
+                <form action="Manage" method="post">
                     <p class="formTitle"><b>Change password</b></p>
 
                     <div class="container">
@@ -83,7 +83,7 @@
             </div>
 
             <div class="forms">
-                <form action="Manage" method="get" class="deleteForm">
+                <form action="Manage" method="post" class="deleteForm">
                     <p class="formTitle" style="margin: 2% 0 1% 0;"><b>Delete account</b></p>
                     <label for="deleteAccount" style="font-size: 17.5px;">Tick to delete account: </label>
                     <input type="checkbox" id="deleteAccount" name="deleteAccount" required><br>

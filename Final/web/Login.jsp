@@ -9,8 +9,7 @@
     </head>
 
     <body>
-
-        <form class="loginBlock" action="Auth" method="get">
+        <form class="loginBlock" action="Auth" method="post">
             <div>
                 <input type="submit" name="action" value="Login">
                 <a href="Register">Don't have an account yet?</a>
@@ -25,6 +24,11 @@
                 <p id="status">${accountStatus}</p>
             </div>
         </form>
+        <div style="display: block;">
+            <form action="Auth" method="post" >
+                <input type="submit" name="action" value="create">
+            </form>
+        </div>
     </body>
 
     </html>

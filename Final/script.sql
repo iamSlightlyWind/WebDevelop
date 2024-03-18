@@ -33,16 +33,16 @@ CREATE TABLE UserDetails
 
 create table MessageGroup
 (
-    groupID int IDENTITY(1,1) PRIMARY KEY,
-    userID int REFERENCES Users(id),
+    groupID int PRIMARY KEY,
+    user1ID int REFERENCES Users(id),
+    user2ID int REFERENCES Users(id)
 );
 
 create table Messages
 (
     groupID int REFERENCES MessageGroup(groupID),
-    userID int REFERENCES Users(id),
-    message NVARCHAR(100),
-    time DATETIME
+    senderID int REFERENCES Users(id),
+    message NVARCHAR(100)
 );
 
 
@@ -62,14 +62,3 @@ from MessageGroup
 
 select *
 from Messages
-
-insert into FriendStatus values(1, 2);
-insert into FriendStatus values(1, 4);
-
-select *
-from Users
-select *
-from FriendStatus
-SELECT firstName, id FROM UserDetails WHERE id IN (SELECT friendID FROM FriendStatus WHERE userID = 1)
-SELECT firstName, id FROM UserDetails WHERE id NOT IN (SELECT friendID FROM FriendStatus WHERE userID = 1) AND id != 1;
-SELECT * FROM FriendStatus WHERE userID = 1 AND friendID = 2

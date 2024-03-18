@@ -39,14 +39,14 @@
 
             <div class="bodyDiv">
                 <div class="half">
-                    <form action="SearchFor" method="GET">
+                    <form action="SearchFor" method="post">
                         <input type="text" name="input" placeholder="Users">
                         <button type="submit" name="action" value="searchUsers">Search</button>
                         <p>${searchString}</p>
                     </form>
                     <c:forEach var="user" items="${userList}">
                         <div class="user">
-                            <form action="SearchFor" method="GET">
+                            <form action="SearchFor" method="post">
                                 <p>${user.firstName}</p>
                                 <input type="hidden" name="id" value="${user.lastName}">
                                 <button class="addFriend" type="submit" name="action" value="addFriend">Add
@@ -56,14 +56,14 @@
                     </c:forEach>
                 </div>
                 <div class="half">
-                    <form action="SearchFor" method="GET">
+                    <form action="SearchFor" method="post">
                         <input type="text" name="input" placeholder="Friends">
                         <button type="submit" name="action" value="searchFriends">Search</button>
                         <p>${searchString}</p>
                     </form>
                     <c:forEach var="user" items="${friendList}">
                         <div class="user">
-                            <form action="SearchFor" method="GET">
+                            <form action="SearchFor" method="post">
                                 <p>${user.firstName}</p>
                                 <input type="hidden" name="id" value="${user.lastName}">
                                 <div class="friendOptions">

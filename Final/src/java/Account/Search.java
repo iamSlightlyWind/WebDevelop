@@ -62,7 +62,7 @@ public class Search extends HttpServlet {
             int friendID = Integer.parseInt(request.getParameter("id"));
             request.getSession().setAttribute("messageID", friendID);
             request.getSession().setAttribute("messageName", db.getName(friendID));
-            response.sendRedirect("./Message");
+            response.sendRedirect("./Mess");
         } else try (PrintWriter out = response.getWriter()) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/Search.jsp");
             dispatcher.forward(request, response);

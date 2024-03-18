@@ -68,7 +68,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>MessageServlet</servlet-name>
-        <servlet-class>Messaging.Message</servlet-class>
+        <servlet-class>Messaging.Messaging</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MessageServlet</servlet-name>
