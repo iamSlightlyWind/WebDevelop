@@ -128,14 +128,21 @@ public class DBContext {
     }
 
     public ResultSet messageList(int groupID) throws SQLException {
-        String query = "select * from Messages where groupID = " + groupID;
-        return getQuery(query);
+        String query = "SELECT * FROM Messages WHERE groupID = ?";
+        PreparedStatement stmt = this.connection.prepareStatement(query);
+        stmt.setInt(1, groupID);
+        return stmt.executeQuery();
     }
-
-    public void sendMessasge(String message, int senderID, int groupID) throws SQLException {
-        String query = "insert into Messages values (" + groupID + ", " + senderID + ", '" + message + "')";
-        this.connection.prepareStatement(query).executeUpdate();
+    
+    public void sendMessage(String message, int senderID, int groupID) throws SQLException {
+        String query = "EXEC InsertMessage ?, ?, ?";
+        PreparedStatement stmt = this.connection.prepareStatement(query);
+        stmt.setInt(1, groupID);
+        stmt.setInt(2, senderID);
+        stmt.setString(3, message);
+        stmt.executeUpdate();
     }
+    
 
     public ResultSet getQuery(String query) throws SQLException {
         PreparedStatement stmt = this.connection.prepareStatement(query);

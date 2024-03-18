@@ -1,14 +1,15 @@
 package Messaging;
 
 public class Message {
-    public String senderID, message;
+    public int senderID;
+    public String message;
 
-    public Message(String senderID, String message) {
-        this.senderID = senderID;
+    public Message(String senderID, String message, int currentUser) {
         this.message = message;
+        this.senderID = senderID.equals(currentUser + "") ? 1 : 0;
     }
 
-    public String getSenderID() {
+    public int getSenderID() {
         return senderID;
     }
 

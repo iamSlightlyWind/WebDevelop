@@ -42,9 +42,19 @@ create table Messages
 (
     groupID int REFERENCES MessageGroup(groupID),
     senderID int REFERENCES Users(id),
-    message NVARCHAR(100)
+    message NVARCHAR(100),
+    time DATETIME
 );
 
+CREATE PROCEDURE InsertMessage
+    @groupID int,
+    @senderID int,
+    @message nvarchar(100)
+AS
+BEGIN
+    INSERT INTO Messages(groupID, senderID, message, time)
+    VALUES (@groupID, @senderID, @message, GETDATE())
+END
 
 USE Final;
 
@@ -62,3 +72,5 @@ from MessageGroup
 
 select *
 from Messages
+
+truncate table Messages

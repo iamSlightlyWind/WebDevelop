@@ -28,7 +28,7 @@ public class Messaging extends HttpServlet {
         if (action.equals("send")) {
             String message = request.getParameter("message");
             int senderID = (Integer) request.getSession().getAttribute("userID");
-            db.sendMessasge(message, senderID, groupID);
+            db.sendMessage(message, senderID, groupID);
         }
 
         ArrayList<Message> messageList = new ArrayList();
@@ -37,7 +37,8 @@ public class Messaging extends HttpServlet {
         while (results.next()) {
             messageList.add(new Message(
                     results.getString("senderID"),
-                    results.getString("message")));
+                    results.getString("message"),
+                    (Integer) request.getSession().getAttribute("userID")));
         }
         request.setAttribute("messageList", messageList);
 
