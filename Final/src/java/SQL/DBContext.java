@@ -91,7 +91,7 @@ public class DBContext {
     }
 
     public ResultSet searchFriendList(int currentUser, String searchString) throws SQLException {
-        String query = "SELECT firstName, id FROM UserDetails WHERE id IN (SELECT friendID FROM FriendStatus WHERE userID = ? AND status = 1 UNION SELECT userID FROM FriendStatus WHERE friendID = ? AND status = 1) AND firstName LIKE ?";
+        String query = "SELECT firstName, lastName,  id FROM UserDetails WHERE id IN (SELECT friendID FROM FriendStatus WHERE userID = ? AND status = 1 UNION SELECT userID FROM FriendStatus WHERE friendID = ? AND status = 1) AND firstName LIKE ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, currentUser);
         statement.setInt(2, currentUser);

@@ -20,10 +20,10 @@ public class UserDetails {
         this.password = password;
     }
 
-    public UserDetails(ResultSet single, int status) throws SQLException {
-        this.firstName = single.getString("firstName");
-        this.lastName = single.getString("lastName");
-        this.id = (Integer) single.getInt("id");
+    public UserDetails(ResultSet result, int status) throws SQLException {
+        this.firstName = result.getString("firstName");
+        this.lastName = result.getString("lastName");
+        this.id = (Integer) result.getInt("id");
         this.status = status;
     }
 
@@ -41,5 +41,9 @@ public class UserDetails {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

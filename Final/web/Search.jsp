@@ -78,8 +78,8 @@
                     <c:forEach var="user" items="${friendList}">
                         <div class="user">
                             <form action="SearchFor" method="post">
-                                <p>${user.firstName}</p>
-                                <input type="hidden" name="id" value="${user.lastName}">
+                                <p>${user.firstName} ${user.lastName}</p>
+                                <input type="hidden" name="id" value="${user.email}">
                                 <div class="friendOptions">
                                     <button class="removeFriend" type="submit" name="action"
                                         value="removeFriend"><b>Remove Friend</b></button>

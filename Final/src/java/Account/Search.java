@@ -42,7 +42,7 @@ public class Search extends HttpServlet {
             while (results.next()) {
                 if (results.getInt("id") != userID) {
                     friendList
-                            .add(new UserDetails(results.getString("firstName"), results.getInt("id") + "", "notNeeded",
+                            .add(new UserDetails(results.getString("firstName"), results.getString("lastName"), results.getInt("id") + "",
                                     "notNeeded", "notNeeded"));
                 }
             }

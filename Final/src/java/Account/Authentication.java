@@ -19,15 +19,6 @@ public class Authentication extends HttpServlet {
         boolean user = false;
         boolean completed = false;
 
-        if (accountAction.equals("create")) {
-            DBContext db = new DBContext();
-            db.registerUser(new UserDetails("Rachel", "Reed", "rachel.reed@example.com", "rachelr_89", "G#fJ5s2x"));
-            db.registerUser(new UserDetails("Brandon", "Parker", "brandon.parker@example.com", "bparker24", "T9m@Lq7z"));
-            db.registerUser(new UserDetails("Lauren", "Scott", "lauren.scott@example.com", "lscott_78", "W3p$K@8z"));
-            db.registerUser(new UserDetails("Joshua", "Murphy", "joshua.murphy@example.com", "jmurphy56", "X%tF2l9q"));
-            db.registerUser(new UserDetails("Megan", "Carter", "megan.carter@example.com", "megcarter93", "H@rP6s5t"));
-        }
-
         try (PrintWriter out = response.getWriter()) {
             DBContext db = new DBContext();
             ResultSet rs = db.getQuery("select * from Users");
@@ -79,7 +70,7 @@ public class Authentication extends HttpServlet {
             }
 
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/" + accountAction + ".jsp");
-            //dispatcher.forward(request, response);
+            dispatcher.forward(request, response);
         }
     }
 

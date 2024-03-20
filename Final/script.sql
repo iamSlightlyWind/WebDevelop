@@ -34,17 +34,28 @@ CREATE TABLE UserDetails
 
 create table MessageGroup
 (
-    groupID int IDENTITY(1,1) PRIMARY KEY,
-    userID int REFERENCES Users(id),
+    groupID int PRIMARY KEY,
+    user1ID int REFERENCES Users(id),
+    user2ID int REFERENCES Users(id)
 );
 
 create table Messages
 (
     groupID int REFERENCES MessageGroup(groupID),
-    userID int REFERENCES Users(id),
+    senderID int REFERENCES Users(id),
     message NVARCHAR(100),
     time DATETIME
 );
+
+CREATE PROCEDURE InsertMessage
+    @groupID int,
+    @senderID int,
+    @message nvarchar(100)
+AS
+BEGIN
+    INSERT INTO Messages(groupID, senderID, message, time)
+    VALUES (@groupID, @senderID, @message, GETDATE())
+END
 
 -- Inserting users into the Users table
 INSERT INTO Users (name, password, active) VALUES
