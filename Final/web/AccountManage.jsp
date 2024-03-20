@@ -21,7 +21,7 @@
                 window.location.href = "Manage?action=Logout";
             }
             function search() {
-                window.location.href = "Search";
+                window.location.href = "SearchFor";
             }
         </script>
     </head>

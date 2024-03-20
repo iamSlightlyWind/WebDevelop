@@ -14,40 +14,9 @@ public class Search extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        String action = request.getParameter("action");
         DBContext db = new DBContext();
+        String action = db.nullCheck(request.getParameter("action"));
         int userID = db.getID((String) request.getSession().getAttribute("user"));
-
-        String searchString = request.getParameter("input");
-
-        if (action.equals("searchUsers")) {
-            ArrayList<UserDetails> userList = new ArrayList();
-            ResultSet results = db.searchUserList(userID, searchString);
-
-            while (results.next()) {
-                if (results.getInt("id") != userID) {
-                    userList.add(new UserDetails(
-                            results,
-                            db.friendStatus(userID, results.getInt("id")))
-                    );
-                }
-            }
-            request.setAttribute("userList", userList);
-        }
-
-        if (action.equals("searchFriends")) {
-            ArrayList<UserDetails> friendList = new ArrayList();
-            ResultSet results = db.searchFriendList(userID, searchString);
-
-            while (results.next()) {
-                if (results.getInt("id") != userID) {
-                    friendList
-                            .add(new UserDetails(results.getString("firstName"), results.getString("lastName"), results.getInt("id") + "",
-                                    "notNeeded", "notNeeded"));
-                }
-            }
-            request.setAttribute("friendList", friendList);
-        }
 
         if (action.equals("sendRequest")) {
             int friendID = Integer.parseInt(request.getParameter("id"));
@@ -60,7 +29,7 @@ public class Search extends HttpServlet {
             db.acceptFriendRequest(userID, friendID);
         }
 
-        if(action.equals("PullFriendRequest")){
+        if (action.equals("PullFriendRequest")) {
             int friendID = Integer.parseInt(request.getParameter("id"));
             db.PullFriendRequest(userID, friendID);
         }
@@ -70,15 +39,51 @@ public class Search extends HttpServlet {
             db.removeFriend(userID, friendID);
         }
 
+        ArrayList<UserDetails> userList = new ArrayList();
+        ArrayList<UserDetails> friendList = new ArrayList();
+
+        String userString = "";
+        String friendString = "";
+
+        if (action.equals("searchUsers")) {
+            userString = db.nullCheck(request.getParameter("userInput"));
+        } else if (action.equals("searchFriends")) {
+            friendString = db.nullCheck(request.getParameter("friendInput"));
+        }
+
+        ResultSet userResults = db.searchUserList(userID, userString);
+        ResultSet friendResult = db.searchFriendList(userID, friendString);
+
+        while (userResults.next()) {
+            if (userResults.getInt("id") != userID) {
+                userList.add(new UserDetails(
+                        userResults,
+                        db.friendStatus(userID, userResults.getInt("id"))));
+            }
+        }
+
+        while (friendResult.next()) {
+            if (friendResult.getInt("id") != userID) {
+                friendList
+                        .add(new UserDetails(friendResult.getString("firstName"), friendResult.getString("lastName"),
+                                friendResult.getInt("id") + "",
+                                "notNeeded", "notNeeded"));
+            }
+        }
+
+        request.setAttribute("userList", userList);
+        request.setAttribute("friendList", friendList);
+
         if (action.equals("message")) {
             int friendID = Integer.parseInt(request.getParameter("id"));
             request.getSession().setAttribute("messageID", friendID);
             request.getSession().setAttribute("messageName", db.getName(friendID));
             response.sendRedirect("./Mess");
-        } else try (PrintWriter out = response.getWriter()) {
+        } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/Search.jsp");
             dispatcher.forward(request, response);
         }
+
     }
 
     @Override

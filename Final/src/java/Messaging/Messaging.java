@@ -14,10 +14,7 @@ public class Messaging extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         DBContext db = new DBContext();
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
+        String action = db.nullCheck(request.getParameter("action"));
 
         int groupID = db.groupID(
                 (Integer) request.getSession().getAttribute("userID"),

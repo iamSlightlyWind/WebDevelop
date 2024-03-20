@@ -63,6 +63,13 @@ public class DBContext {
         this.connection.prepareStatement(detailInsert).executeUpdate();
     }
 
+    public String nullCheck(String action) {
+        if (action == null) {
+            return "";
+        }
+        return action;
+    }
+
     public int groupID(int user1ID, int user2ID) throws SQLException {
         String query = "select groupID from MessageGroup where user1ID = " + user1ID + " and user2ID = " + user2ID;
         String result = getQueryString(query);

@@ -10,12 +10,8 @@ public class AccountManage extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         response.setContentType("text/html;charset=UTF-8");
-
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
         DBContext db = new DBContext();
+        String action = db.nullCheck(request.getParameter("action"));
 
         if (action.equals("Logout")) {
             request.getSession().invalidate();

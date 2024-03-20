@@ -40,10 +40,10 @@
             <div class="bodyDiv">
                 <div class="half">
                     <form action="SearchFor" method="post">
-                        <input type="text" name="input" placeholder="Users">
+                        <input type="text" name="userInput" placeholder="Users">
                         <button type="submit" style="padding: 0.5% 1%;" name="action"
                             value="searchUsers">Search</button>
-                        <p>${searchString}</p>
+                        <p>${userString}</p>
                     </form>
                     <c:forEach var="user" items="${userList}">
                         <div class="user">
@@ -70,10 +70,10 @@
                 </div>
                 <div class="half">
                     <form action="SearchFor" method="post">
-                        <input type="text" name="input" placeholder="Friends">
+                        <input type="text" name="friendInput" placeholder="Friends">
                         <button type="submit" style="padding: 0.5% 1%;" name="action"
                             value="searchFriends">Search</button>
-                        <p>${searchString}</p>
+                        <p>${friendString}</p>
                     </form>
                     <c:forEach var="user" items="${friendList}">
                         <div class="user">

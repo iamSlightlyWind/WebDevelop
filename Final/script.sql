@@ -72,21 +72,3 @@ INSERT INTO UserDetails (id, firstName, lastName, email) VALUES
 (3, 'Lauren', 'Scott', 'lauren.scott@example.com'),
 (4, 'Joshua', 'Murphy', 'joshua.murphy@example.com'),
 (5, 'Megan', 'Carter', 'megan.carter@example.com');
-
-
-USE Final;
-
-select *
-from Users
-
-select *
-from FriendStatus
-
-select *
-from UserDetails
-
-select *
-from MessageGroup
-
-select *
-from Messages
