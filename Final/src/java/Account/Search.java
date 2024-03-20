@@ -19,7 +19,6 @@ public class Search extends HttpServlet {
         int userID = db.getID((String) request.getSession().getAttribute("user"));
 
         String searchString = request.getParameter("input");
-        String search = "";
 
         if (action.equals("searchUsers")) {
             ArrayList<UserDetails> userList = new ArrayList();
@@ -27,8 +26,10 @@ public class Search extends HttpServlet {
 
             while (results.next()) {
                 if (results.getInt("id") != userID) {
-                    userList.add(new UserDetails(results.getString("firstName"), results.getInt("id") + "", "notNeeded",
-                            "notNeeded", "notNeeded"));
+                    userList.add(new UserDetails(
+                            results,
+                            db.friendStatus(userID, results.getInt("id")))
+                    );
                 }
             }
             request.setAttribute("userList", userList);
@@ -48,9 +49,20 @@ public class Search extends HttpServlet {
             request.setAttribute("friendList", friendList);
         }
 
-        if (action.equals("addFriend")) {
+        if (action.equals("sendRequest")) {
             int friendID = Integer.parseInt(request.getParameter("id"));
-            db.addFriend(userID, friendID);
+            db.sendFriendRequest(userID, friendID);
+        }
+
+        if (action.equals("acceptFriendRequest")) {
+            int friendID = Integer.parseInt(request.getParameter("id"));
+            System.out.println("Accepting friend request from " + friendID + " to " + userID);
+            db.acceptFriendRequest(userID, friendID);
+        }
+
+        if(action.equals("PullFriendRequest")){
+            int friendID = Integer.parseInt(request.getParameter("id"));
+            db.PullFriendRequest(userID, friendID);
         }
 
         if (action.equals("removeFriend")) {

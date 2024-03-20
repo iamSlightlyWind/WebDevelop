@@ -18,6 +18,12 @@ CREATE TABLE Users
     active INT DEFAULT 1
 );
 
+create table FriendStatus(
+    userID int REFERENCES Users(id),
+    friendID int REFERENCES Users(id),
+    status int
+);
+
 CREATE TABLE UserDetails
 (
     id INT REFERENCES Users(id),
@@ -26,43 +32,27 @@ CREATE TABLE UserDetails
     email VARCHAR(50)
 );
 
-create table FriendStatus(
-    userID int REFERENCES Users(id),
-    friendID int REFERENCES Users(id),
-);
-
 create table MessageGroup
 (
-    groupID int PRIMARY KEY,
-    user1ID int REFERENCES Users(id),
-    user2ID int REFERENCES Users(id)
+    groupID int IDENTITY(1,1) PRIMARY KEY,
+    userID int REFERENCES Users(id),
 );
 
 create table Messages
 (
     groupID int REFERENCES MessageGroup(groupID),
-    senderID int REFERENCES Users(id),
+    userID int REFERENCES Users(id),
     message NVARCHAR(100),
     time DATETIME
 );
 
-CREATE PROCEDURE InsertMessage
-    @groupID int,
-    @senderID int,
-    @message nvarchar(100)
-AS
-BEGIN
-    INSERT INTO Messages(groupID, senderID, message, time)
-    VALUES (@groupID, @senderID, @message, GETDATE())
-END
-
 -- Inserting users into the Users table
 INSERT INTO Users (name, password, active) VALUES
-('Rachel', 'rachelr_89', 1),
-('Brandon', 'bparker24', 1),
-('Lauren', 'lscott_78', 1),
-('Joshua', 'jmurphy56', 1),
-('Megan', 'megcarter93', 1);
+('rachelr_89', 'G#fJ5s2x', 1),
+('bparker24', 'T9m@Lq7z', 1),
+('lscott_78', 'W3p$K@8z', 1),
+('jmurphy56', 'X%tF2l9q', 1),
+('megcarter93', 'H@rP6s5t', 1);
 
 -- Inserting user details into the UserDetails table
 INSERT INTO UserDetails (id, firstName, lastName, email) VALUES
@@ -72,3 +62,20 @@ INSERT INTO UserDetails (id, firstName, lastName, email) VALUES
 (4, 'Joshua', 'Murphy', 'joshua.murphy@example.com'),
 (5, 'Megan', 'Carter', 'megan.carter@example.com');
 
+
+USE Final;
+
+select *
+from Users
+
+select *
+from FriendStatus
+
+select *
+from UserDetails
+
+select *
+from MessageGroup
+
+select *
+from Messages

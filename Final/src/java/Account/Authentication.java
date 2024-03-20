@@ -79,7 +79,7 @@ public class Authentication extends HttpServlet {
             }
 
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/" + accountAction + ".jsp");
-            dispatcher.forward(request, response);
+            //dispatcher.forward(request, response);
         }
     }
 

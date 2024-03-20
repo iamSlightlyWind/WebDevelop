@@ -41,15 +41,29 @@
                 <div class="half">
                     <form action="SearchFor" method="post">
                         <input type="text" name="input" placeholder="Users">
-                        <button type="submit" style="padding: 0.5% 1%;" name="action" value="searchUsers">Search</button>
+                        <button type="submit" style="padding: 0.5% 1%;" name="action"
+                            value="searchUsers">Search</button>
                         <p>${searchString}</p>
                     </form>
                     <c:forEach var="user" items="${userList}">
                         <div class="user">
                             <form action="SearchFor" method="post">
-                                <p>${user.firstName}</p>
-                                <input type="hidden" name="id" value="${user.lastName}">
-                                <button class="addFriend" type="submit" name="action" value="addFriend"><b>Add Friend</b></button>
+                                <p>${user.firstName} ${user.lastName}</p>
+                                <input type="hidden" name="id" value="${user.id}">
+                                <c:choose>
+                                    <c:when test="${user.status == -1}">
+                                        <button class="sfr" type="submit" name="action" value="sendRequest"><b>Send Friend
+                                                Request</b></button>
+                                    </c:when>
+                                    <c:when test="${user.status == 1}">
+                                        <button class="afr" type="submit" name="action" value="acceptFriendRequest"><b>Accept
+                                                Friend Request</b></button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button class="rfr" type="submit" name="action" value="PullFriendRequest"><b>Pull
+                                                Friend Request</b></button>
+                                    </c:otherwise>
+                                </c:choose>
                             </form>
                         </div>
                     </c:forEach>
@@ -57,7 +71,8 @@
                 <div class="half">
                     <form action="SearchFor" method="post">
                         <input type="text" name="input" placeholder="Friends">
-                        <button type="submit" style="padding: 0.5% 1%;" name="action" value="searchFriends">Search</button>
+                        <button type="submit" style="padding: 0.5% 1%;" name="action"
+                            value="searchFriends">Search</button>
                         <p>${searchString}</p>
                     </form>
                     <c:forEach var="user" items="${friendList}">
@@ -66,7 +81,8 @@
                                 <p>${user.firstName}</p>
                                 <input type="hidden" name="id" value="${user.lastName}">
                                 <div class="friendOptions">
-                                    <button class="removeFriend" type="submit" name="action" value="removeFriend"><b>Remove Friend</b></button>
+                                    <button class="removeFriend" type="submit" name="action"
+                                        value="removeFriend"><b>Remove Friend</b></button>
                                     <button class="messageFriend" type="submit" name="action"
                                         value="message"><b>Message</b></button>
                                 </div>

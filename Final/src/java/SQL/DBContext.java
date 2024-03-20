@@ -85,28 +85,80 @@ public class DBContext {
         return Integer.parseInt(result);
     }
 
-    public ResultSet searchUserList(int currentUser, String searchString) throws SQLException {
-        String query = "SELECT firstName, id FROM UserDetails WHERE id NOT IN (SELECT friendID FROM FriendStatus WHERE userID = "
-                + currentUser + " UNION SELECT userID FROM FriendStatus WHERE friendID = " + currentUser
-                + ") AND id != " + currentUser + " AND firstName LIKE '%" + searchString + "%'";
-        return getQuery(query);
-    }
-
-    public ResultSet searchFriendList(int currentUser, String searchString) throws SQLException {
-        String query = "SELECT firstName, id FROM UserDetails WHERE id IN (SELECT friendID FROM FriendStatus WHERE userID = "
-                + currentUser + " UNION SELECT userID FROM FriendStatus WHERE friendID = " + currentUser
-                + ") AND firstName LIKE '%" + searchString + "%'";
-        return getQuery(query);
-    }
-
     public String getName(int id) throws SQLException {
         String query = "SELECT name FROM Users WHERE id = " + id;
         return getQueryString(query);
     }
 
-    public void addFriend(int userID, int friendID) throws SQLException {
-        String query = "INSERT INTO FriendStatus VALUES (" + userID + ", " + friendID + ")";
-        this.connection.prepareStatement(query).executeUpdate();
+    public ResultSet searchFriendList(int currentUser, String searchString) throws SQLException {
+        String query = "SELECT firstName, id FROM UserDetails WHERE id IN (SELECT friendID FROM FriendStatus WHERE userID = ? AND status = 1 UNION SELECT userID FROM FriendStatus WHERE friendID = ? AND status = 1) AND firstName LIKE ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, currentUser);
+        statement.setInt(2, currentUser);
+        statement.setString(3, "%" + searchString + "%");
+        return statement.executeQuery();
+    }
+
+    public ResultSet searchUserList(int currentUser, String searchString) throws SQLException {
+        String query = "SELECT firstName, lastName, id FROM UserDetails WHERE id NOT IN (SELECT friendID FROM FriendStatus WHERE userID = ? AND status = 1 UNION SELECT userID FROM FriendStatus WHERE friendID = ? AND status = 1) AND id != ? AND firstName LIKE ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, currentUser);
+        statement.setInt(2, currentUser);
+        statement.setInt(3, currentUser);
+        statement.setString(4, "%" + searchString + "%");
+        return statement.executeQuery();
+    }
+
+    public void sendFriendRequest(int userID, int friendID) throws SQLException {
+        String checkQuery = "SELECT * FROM FriendStatus WHERE (userID = ? AND friendID = ?) OR (userID = ? AND friendID = ?)";
+        PreparedStatement checkStatement = connection.prepareStatement(checkQuery);
+        checkStatement.setInt(1, userID);
+        checkStatement.setInt(2, friendID);
+        checkStatement.setInt(3, friendID);
+        checkStatement.setInt(4, userID);
+        ResultSet rs = checkStatement.executeQuery();
+        if (!rs.next()) {
+            String insertQuery = "INSERT INTO FriendStatus VALUES (?, ?, 0)";
+            PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
+            insertStatement.setInt(1, userID);
+            insertStatement.setInt(2, friendID);
+            insertStatement.executeUpdate();
+        }
+    }
+
+    public void acceptFriendRequest(int userID, int friendID) throws SQLException {
+        String query = "UPDATE FriendStatus SET status = 1 WHERE userID = ? AND friendID = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, friendID);
+        statement.setInt(2, userID);
+        statement.executeUpdate();
+    }
+
+    public void PullFriendRequest(int userID, int friendID) throws SQLException {
+        String query = "DELETE FROM FriendStatus WHERE userID = ? AND friendID = ? AND status != 1";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, userID);
+        statement.setInt(2, friendID);
+        statement.executeUpdate();
+    }
+
+    public int friendStatus(int userID, int friendID) throws SQLException {
+        String query = "SELECT userID, status FROM FriendStatus WHERE (userID = ? AND friendID = ?) OR (userID = ? AND friendID = ?)";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, userID);
+        statement.setInt(2, friendID);
+        statement.setInt(3, friendID);
+        statement.setInt(4, userID);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            if (rs.getInt("userID") == userID) {
+                return 0;
+            } else {
+                return 1;
+            }
+        } else {
+            return -1;
+        }
     }
 
     public void removeFriend(int userID, int friendID) throws SQLException {
@@ -133,7 +185,7 @@ public class DBContext {
         stmt.setInt(1, groupID);
         return stmt.executeQuery();
     }
-    
+
     public void sendMessage(String message, int senderID, int groupID) throws SQLException {
         String query = "EXEC InsertMessage ?, ?, ?";
         PreparedStatement stmt = this.connection.prepareStatement(query);
@@ -142,7 +194,6 @@ public class DBContext {
         stmt.setString(3, message);
         stmt.executeUpdate();
     }
-    
 
     public ResultSet getQuery(String query) throws SQLException {
         PreparedStatement stmt = this.connection.prepareStatement(query);

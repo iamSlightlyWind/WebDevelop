@@ -63,7 +63,6 @@ public class AccountManage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("GET request received for AccountManage servlet.");
         try {
             processRequest(request, response);
         } catch (Exception e) {

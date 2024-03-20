@@ -5,8 +5,6 @@ import java.io.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import Account.UserDetails;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
