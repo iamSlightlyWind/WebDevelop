@@ -10,6 +10,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
             rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Condiment&display=swap" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
             $(document).ready(function () {
@@ -34,7 +37,7 @@
         <header>
             <button class="left"><img src="./Manage/user.png" alt="Button 1"></button>
             <div class="title">
-                <h1>Account Management</h1>
+                <h1 class="web">Account Management</h1>
             </div>
             <button class="right" onclick="logout()"><img src="./Manage/logout.png" alt="Button 2"></button>
             <button class="right" onclick="search()"><img src="./Manage/search.png" alt="Button 1"></button>

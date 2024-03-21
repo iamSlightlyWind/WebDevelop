@@ -12,6 +12,14 @@ html {
     font-style: normal;
 }
 
+.dropletter {
+    font-family: "Condiment", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 4vw;
+    margin-bottom: 3%;
+}
+
 body {
     display: block;
     width: auto;

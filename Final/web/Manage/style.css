@@ -208,3 +208,9 @@ input[type="submit"] {
         padding-bottom: 2%;
     }
 }
+
+.web {
+    font-family: "Aboreto", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}

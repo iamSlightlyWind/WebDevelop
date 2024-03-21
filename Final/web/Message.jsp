@@ -12,6 +12,10 @@
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
                 rel="stylesheet">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Condiment&display=swap"
+                rel="stylesheet">
         </head>
         <script>
             function logout() {
@@ -30,7 +34,7 @@
             <header>
                 <button class="left"><img src="./Manage/Message.png" alt="Button 1"></button>
                 <div class="title">
-                    <h1>
+                    <h1 class="web">
                         <%= session.getAttribute("messageName") %>
                     </h1>
                 </div>

@@ -217,3 +217,9 @@ header button:first-child {
     align-items: center;
     float: left;
 }
+
+.web {
+    font-family: "Aboreto", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}

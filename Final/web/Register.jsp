@@ -10,13 +10,19 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
             rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Condiment&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Condiment&display=swap" rel="stylesheet">
     </head>
 
     <body>
 
         <form class="loginBlock" action="Auth" method="post">
             <div>
-                <h1>DropLetter</h1>
+                <h1 class="dropletter">DropLetter</h1>
                 <input style="font-weight: bold;" type="submit" name="action" value="Register">
                 <a href="Login"><b>Already have an account?</b></a>
             </div>

@@ -7,6 +7,6 @@ select * from users
 select * from UserDetails
 select * from FriendStatus
 select * from MessageGroup
-select * from Messages
+select * from Messages order by time asc
 
 truncate table messages

@@ -228,3 +228,9 @@ p {
 .float-right:hover ~ .deleteForm .deleteButton {
     opacity: 1;
 }
+
+.web {
+    font-family: "Aboreto", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
