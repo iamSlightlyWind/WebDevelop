@@ -8,6 +8,10 @@
             <link rel="stylesheet" href="./Message/style.css">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <title>Message</title>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+                rel="stylesheet">
         </head>
         <script>
             function logout() {
@@ -38,6 +42,15 @@
                     <c:forEach var="message" items="${messageList}">
                         <div>
                             <p class="${message.senderID == 0 ? 'float-left' : 'float-right'}">${message.message}</p>
+                            <c:if test="${message.senderID == 1}">
+                                <form class="deleteForm" action="./Mess" method="post">
+                                    <input type="hidden" name="messageBody" value="${message.message}">
+                                    <input type="hidden" name="messageTime" value="${message.time}">
+                                    <button class="deleteButton" type="submit" name="action" value="delete">
+                                        <img class="deleteImage" src="./Message/delete.png">
+                                    </button>
+                                </form>
+                            </c:if>
                             <br>
                         </div>
                     </c:forEach>

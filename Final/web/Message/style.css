@@ -24,11 +24,12 @@ body {
 }
 
 header img {
-    height: 100%;
+    height: 80%;
     width: fit-content;
 }
 
 header h1 {
+    padding-top: 1vh;
     font-size: 24px;
     margin: 0;
 }
@@ -50,6 +51,16 @@ header .left {
 header .right {
     float: right;
     margin-left: 3%;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+}
+
+header .right:hover {
+    background-color: rgba(204, 204, 204, 0.5); /* 50% opacity when hovered */
+}
+
+header .right:active {
+    background-color: rgba(204, 204, 204, 1); /* Full opacity when pressed */
 }
 
 header .left {
@@ -143,7 +154,7 @@ form {
 
 .float-right {
     float: right;
-    margin-left: 65%;
+    clear: right;
 }
 
 .float-left, .float-right {
@@ -176,4 +187,37 @@ p {
         margin: auto;
         margin-top: 2%;
     }
+}
+
+.deleteForm {
+    float: right;
+    width: 6%;
+}
+
+.deleteButton {
+    background-color: transparent;
+    border: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 5px;
+}
+
+.deleteButton:hover {
+    opacity: 1;
+}
+
+.deleteButton:active {
+    background-color: #ccc;
+    opacity: 1;
+}
+
+.deleteImage {
+    max-height: 35px;
+    max-width: 35px;
+    height: 100%;
+    width: 100%;
+}
+
+.float-right:hover ~ .deleteForm .deleteButton {
+    opacity: 1;
 }

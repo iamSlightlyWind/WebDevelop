@@ -26,6 +26,12 @@ public class Messaging extends HttpServlet {
             db.sendMessage(message, senderID, groupID);
         }
 
+        if (action.equals("delete")) {
+            String message = request.getParameter("messageBody");
+            String time = request.getParameter("messageTime");
+            db.deleteMessage(time, message);
+        }
+
         ArrayList<Message> messageList = new ArrayList();
         ResultSet results = db.messageList(groupID);
 
@@ -33,7 +39,8 @@ public class Messaging extends HttpServlet {
             messageList.add(new Message(
                     results.getString("senderID"),
                     results.getString("message"),
-                    (Integer) request.getSession().getAttribute("userID")));
+                    (Integer) request.getSession().getAttribute("userID"),
+                    results.getString("time")));
         }
         request.setAttribute("messageList", messageList);
 

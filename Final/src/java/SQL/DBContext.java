@@ -193,6 +193,14 @@ public class DBContext {
         return stmt.executeQuery();
     }
 
+    public void deleteMessage(String time, String body) throws SQLException {
+        String query = "DELETE FROM Messages WHERE time = ? AND message = ?";
+        PreparedStatement stmt = this.connection.prepareStatement(query);
+        stmt.setString(1, time);
+        stmt.setString(2, body);
+        stmt.executeUpdate();
+    }
+
     public void sendMessage(String message, int senderID, int groupID) throws SQLException {
         String query = "EXEC InsertMessage ?, ?, ?";
         PreparedStatement stmt = this.connection.prepareStatement(query);

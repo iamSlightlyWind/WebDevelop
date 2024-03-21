@@ -7,6 +7,10 @@
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <link rel="stylesheet" href="./Search/style.css">
             <title>Search</title>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+                rel="stylesheet">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script>
                 $(document).ready(function () {
@@ -52,15 +56,18 @@
                                 <input type="hidden" name="id" value="${user.id}">
                                 <c:choose>
                                     <c:when test="${user.status == -1}">
-                                        <button class="sfr" type="submit" name="action" value="sendRequest"><b>Send Friend
+                                        <button class="sfr" type="submit" name="action" value="sendRequest"><b>Send
+                                                Friend
                                                 Request</b></button>
                                     </c:when>
                                     <c:when test="${user.status == 1}">
-                                        <button class="afr" type="submit" name="action" value="acceptFriendRequest"><b>Accept
+                                        <button class="afr" type="submit" name="action"
+                                            value="acceptFriendRequest"><b>Accept
                                                 Friend Request</b></button>
                                     </c:when>
                                     <c:otherwise>
-                                        <button class="rfr" type="submit" name="action" value="PullFriendRequest"><b>Pull
+                                        <button class="rfr" type="submit" name="action"
+                                            value="PullFriendRequest"><b>Pull
                                                 Friend Request</b></button>
                                     </c:otherwise>
                                 </c:choose>
@@ -78,7 +85,7 @@
                     <c:forEach var="user" items="${friendList}">
                         <div class="user">
                             <form action="SearchFor" method="post">
-                                <p>${user.firstName} ${user.lastName}</p>
+                                <p class="friendName">${user.firstName} ${user.lastName}</p>
                                 <input type="hidden" name="id" value="${user.email}">
                                 <div class="friendOptions">
                                     <button class="removeFriend" type="submit" name="action"
