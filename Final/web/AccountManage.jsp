@@ -88,7 +88,7 @@
 
             <div class="forms">
                 <form action="Manage" method="post" class="deleteForm">
-                    <p class="formTitle" style="margin: 2% 0 1% 0;"><b>Delete account</b></p>
+                    <p class="formTitle"><b>Delete account</b></p>
                     <label for="deleteAccount" style="font-size: 17.5px;">Tick to delete account: </label>
                     <input type="checkbox" id="deleteAccount" name="deleteAccount" required><br>
                     <input type="submit" style="margin-top: 2%;" name="action" value="Delete">
