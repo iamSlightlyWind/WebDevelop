@@ -3,8 +3,6 @@
     <html>
 
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
     </head>
 
     <body>
@@ -20,6 +18,9 @@
                     <option value="/">Divide</option>
                     <option value="lg">UCLN</option>
                     <option value="sm">BCNN</option>
+                    <option value="prime">Prime</option>
+                    <option value="perfect">Perfect</option>
+                    <option value="square">Square</option>
                 </select>
             </p>
             <br>
