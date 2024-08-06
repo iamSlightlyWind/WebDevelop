@@ -6,9 +6,9 @@
     </head>
 
     <body>
-        <a href="form1.jsp">Form 1</a>
-        <a href="form2.jsp">Form 2</a>
-        <a href="form3.jsp">Form 3</a>
+        <a href="doCalc?form=1">Form 1</a>
+        <a href="doCalc?form=2">Form 2</a>
+        <a href="doCalc?form=3">Form 3</a>
     </body>
 
     </html>

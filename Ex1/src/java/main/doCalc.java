@@ -14,6 +14,14 @@ public class doCalc extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String action = request.getParameter("action");
+        String form = request.getParameter("form");
+
+        if (action == null) {
+            request.setAttribute("result", -1);
+            request.getRequestDispatcher("form" + form + ".jsp").forward(request, response);
+            return;
+        }
+
         double a = 0;
         double b = 0;
         double result = -1;
@@ -24,7 +32,7 @@ public class doCalc extends HttpServlet {
             b = Double.parseDouble(request.getParameter("b"));
         } catch (NumberFormatException e) {
             request.setAttribute("result", "Invalid input");
-            request.getRequestDispatcher("result.jsp").forward(request, response);
+            request.getRequestDispatcher("form" + form + ".jsp").forward(request, response);
             return;
         }
 
@@ -97,13 +105,9 @@ public class doCalc extends HttpServlet {
                 break;
         }
 
-        if (results.size() > 0) {
-            request.setAttribute("results", results);
-            request.getRequestDispatcher("results.jsp").forward(request, response);
-        } else {
-            request.setAttribute("result", result);
-            request.getRequestDispatcher("result.jsp").forward(request, response);
-        }
+        request.setAttribute("results", results);
+        request.setAttribute("result", result);
+        request.getRequestDispatcher("form" + form + ".jsp").forward(request, response);
     }
 
     protected boolean checkBoundaries(double a, double b, HttpServletRequest request, HttpServletResponse response)
