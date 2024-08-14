@@ -1,5 +1,6 @@
 package Main;
 
+import Database.Database;
 import java.io.IOException;
 import java.util.ArrayList;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,10 @@ public class Handler extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if (request.getSession().getAttribute("role") == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
 
         String action = request.getParameter("action");
         if (action != null) {
@@ -47,6 +52,7 @@ public class Handler extends HttpServlet {
         ArrayList<Student> list = Database.getAll();
 
         request.setAttribute("students", list);
+        request.setAttribute("role", Integer.parseInt(request.getSession().getAttribute("role").toString()));
         request.getRequestDispatcher("student.jsp").forward(request, response);
     }
 

@@ -1,5 +1,7 @@
-package Main;
+package Database;
 
+import Main.Student;
+import Main.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -97,5 +99,39 @@ public class Database {
         } catch (SQLException e) {
             System.out.println(e);
         }
+    }
+
+    public static int login(User current) {
+        String sql = "select role from Account where username = ? and password = ?";
+        int role = -1;
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, current.username);
+            st.setString(2, current.password);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                role = rs.getInt("role");
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return role;
+    }
+
+    public static int register (User current){
+        String sql = "{call register(?,?,?,?)}";
+        int result = -1;
+        try {
+            CallableStatement st = connection.prepareCall(sql);
+            st.setString(1, current.username);
+            st.setString(2, current.password);
+            st.setInt(3, current.role);
+            st.registerOutParameter(4, Types.INTEGER);
+            st.execute();
+            result = st.getInt(4);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return result;
     }
 }
