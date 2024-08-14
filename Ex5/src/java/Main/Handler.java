@@ -27,6 +27,9 @@ public class Handler extends HttpServlet {
                 case "edit":
                     edit(request, response);
                     break;
+                case "search":
+                    search(request, response);
+                    break;
                 case "delete":
                     delete(request, response);
                     viewAll(request, response);
@@ -34,6 +37,66 @@ public class Handler extends HttpServlet {
             }
         } else
             viewAll(request, response);
+    }
+
+    protected void search(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String parm = request.getParameter("parm");
+
+        if (parm.equals("")) {
+            viewAll(request, response);
+            return;
+        }
+
+        boolean isName = false;
+        boolean isRollNo = false;
+        boolean isMark = false;
+
+        double mark = 0;
+
+        try {
+            mark = Double.parseDouble(parm);
+            isMark = true;
+        } catch (NumberFormatException e) {
+            if (parm.matches(".*[a-z].*")) {
+                isName = true;
+            } else {
+                isRollNo = true;
+            }
+        }
+
+        ArrayList<Student> list = Database.getAll();
+
+        if (isMark) {
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getMark() != mark) {
+                    list.remove(i);
+                    i--;
+                }
+            }
+        }
+
+        if (isName) {
+            for (int i = 0; i < list.size(); i++) {
+                if (!list.get(i).getName().contains(parm)) {
+                    list.remove(i);
+                    i--;
+                }
+            }
+        }
+
+        if (isRollNo) {
+            for (int i = 0; i < list.size(); i++) {
+                if (!list.get(i).getRollNo().equals(parm)) {
+                    list.remove(i);
+                    i--;
+                }
+            }
+        }
+
+        request.setAttribute("students", list);
+        request.setAttribute("role", Integer.parseInt(request.getSession().getAttribute("role").toString()));
+        request.getRequestDispatcher("student.jsp").forward(request, response);
     }
 
     protected void update(HttpServletRequest request, HttpServletResponse response)

@@ -5,6 +5,11 @@
         <html>
 
         <body>
+            <form action="view" method="get">
+                <input type="text" name="parm" value="${search}">
+                <button type="submit" name="action" value="search">Search</button>
+            </form>
+
             <table border="1">
                 <tr>
                     <th>RollNo</th>
